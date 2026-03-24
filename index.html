@@ -2114,12 +2114,28 @@ async function updateMapa(index) {
             updateBackgroundOptionsForVar();
             updateMapa(currentIndex);
           };
+          
+          const timeBR = time.map(ts => {
+			  if (!ts || typeof ts !== "string") return "";
+
+			  const clean = ts.split(".")[0];
+			  const dateUTC = new Date(clean + "Z");
+
+			  const dia  = String(dateUTC.getDate()).padStart(2, "0");
+			  const mes  = String(dateUTC.getMonth() + 1).padStart(2, "0");
+			  const ano  = String(dateUTC.getFullYear()).slice(-2);
+			  const hora = String(dateUTC.getHours()).padStart(2, "0");
+			  const min  = String(dateUTC.getMinutes()).padStart(2, "0");
+
+			  return `${dia}/${mes}/${ano} ${hora}:${min}`;
+			});
 
           // Render inicial
           updateBackgroundOptionsForVar();
 			currentIndex = 3;
 			updateMapa(currentIndex);
 			updateHourButtons();
+			plotMeteogramaDefault();
 			bgWindArrows.addEventListener("change", () => {
 			  updateMapa(currentIndex);
 			});
@@ -2148,31 +2164,7 @@ async function updateMapa(index) {
           // Metograma (clique no mapa)
           const mapa = document.getElementById("mapa");
           
-			// Formatar eixo X do metograma (funciona com timestamps WRF tipo 2026-02-14T16:00:00.000000000)
-			const timeBR = time.map(ts => {
-			  if (!ts || typeof ts !== "string") {
-				console.warn("Timestamp inválido encontrado:", ts);
-				return "";
-			  }
 
-			  // Remover nanossegundos, se existirem
-			  const clean = ts.split(".")[0]; // vira: 2026-02-14T16:00:00
-
-			  const dateUTC = new Date(clean + "Z"); // força UTC
-			  if (isNaN(dateUTC.getTime())) {
-				console.warn("Timestamp não pôde ser convertido:", ts);
-				return "";
-			  }
-
-			  const dia  = String(dateUTC.getDate()).padStart(2, "0");
-			  const mes  = String(dateUTC.getMonth() + 1).padStart(2, "0");
-			  const ano  = String(dateUTC.getFullYear()).slice(-2);
-			  const hora = String(dateUTC.getHours()).padStart(2, "0");
-			  const min  = String(dateUTC.getMinutes()).padStart(2, "0");
-
-			  return `${dia}/${mes}/${ano} ${hora}:${min}`;
-			});
-			
 
           // Metograma default após carregar a página
          // Metograma default após carregar a página
@@ -2219,4 +2211,5 @@ async function plotMeteogramaDefault() {
 }
 }
     </script>
-  </body></html>
+  </body>
+</html>

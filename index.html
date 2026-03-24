@@ -319,6 +319,27 @@ select.form-select,
   background: #e7edf3 !important;    /* cinza claro fixo */
   color: #2a3d54 !important;         /* mantém cor do texto */
 }
+
+.alert-demo {
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+
+  border: 1px solid rgba(42, 61, 84, 0.15);
+
+  font-size: 0.85rem;
+  color: #2a3d54;
+
+  display: flex;
+  align-items: center;
+   border-left: 4px solid #0d6efd;
+  gap: 6px;
+
+  max-width: 520px;
+}
 </style>
   </head>
 
@@ -344,9 +365,6 @@ select.form-select,
               <i class="bi bi-cloud-drizzle me-1 opacity-75"></i>
               Modelo WRF–Chem
             </p>
-            <p>
-            OBS: os dados exibidos são puramente representativos (não interpretar como dados reais) e reduzidos epacial/temporalmente, pela limitação do GitHub. A opção de exibição de imagem via satélite também foi removida pelo auto custo de armazenamento. 
-            </p>
           </div>
 
 	<!-- LOGOS -->
@@ -360,6 +378,13 @@ select.form-select,
 	    <img class="brand-logo" src="/logo_RIC.png" alt="Logo do projeto" />
 	  </a>
 
+	</div>
+	<div class="alert-demo mt-3">
+	  <i class="bi bi-info-circle me-2"></i>
+	  <span>
+		Este dashboard utiliza dados reduzidos (espacial e temporalmente) para fins de demonstração.
+		A visualização de satélite foi desativada devido a limitações de armazenamento.
+	  </span>
 	</div>
         </div>
       </div>

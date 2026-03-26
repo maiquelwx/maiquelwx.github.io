@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
@@ -19,2197 +19,2126 @@
 
     <title>Previsão Numérica</title>
 
-  <style>
-/* ===========================
-   FUNDOS / LAYOUT
-=========================== */
-body {
-  background: linear-gradient(135deg, #dfe9f3 0%, #ffffff 100%);
-  min-height: 100vh;
-}
+    <style>
+      /* ===========================
+         FUNDOS / LAYOUT
+      =========================== */
+      body {
+        background: linear-gradient(135deg, #dfe9f3 0%, #ffffff 100%);
+        min-height: 100vh;
+      }
 
-.header-flex {
-  width: 100%;
-}
+      .header-flex {
+        width: 100%;
+      }
 
-.header-divider {
-  border: 0;
-  border-top: 1px solid rgba(80, 100, 120, 0.25);
-  margin-bottom: 25px;
-}
+      .header-divider {
+        border: 0;
+        border-top: 1px solid rgba(80, 100, 120, 0.25);
+        margin-bottom: 25px;
+      }
 
-/* ===========================
-   TIPOGRAFIA
-=========================== */
-h2,
-h5 {
-  color: #2a3d54;
-}
+      /* ===========================
+         TIPOGRAFIA
+      =========================== */
+      h2,
+      h5 {
+        color: #2a3d54;
+      }
 
-.header-title h2 {
-  margin: 0;
-  font-size: 1.9rem;
-}
+      .header-title h2 {
+        margin: 0;
+        font-size: 1.9rem;
+      }
 
-.header-title p {
-  margin: 0;
-  font-size: 1rem;
-}
+      .header-title p {
+        margin: 0;
+        font-size: 1rem;
+      }
 
-#horaAtual {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #495057;
-}
+      #horaAtual {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #495057;
+      }
 
-/* ===========================
-   LOGOS
-=========================== */
-.brand-logo {
-  height: 65px;       /*  */
-  max-width: 200px;   /* opcional */
-  object-fit: contain;
-  opacity: 0.95;
-  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.25));
-  transition: transform 0.25s ease, opacity 0.25s ease;
-}
+      /* ===========================
+         LOGOS
+      =========================== */
+      .brand-logo {
+        height: 65px;       /*  */
+        max-width: 200px;  
+        object-fit: contain;
+        opacity: 0.95;
+        filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.25));
+        transition: transform 0.25s ease, opacity 0.25s ease;
+      }
 
-.brand-logo:hover {
-  transform: scale(1.05);
-  opacity: 1;
-}
+      .brand-logo:hover {
+        transform: scale(1.05);
+        opacity: 1;
+      }
 
-/* ===========================
-   CARDS / ELEMENTOS GLASS
-=========================== */
-.graph-card {
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-  padding: 20px;
-}
+      /* ===========================
+         CARDS / ELEMENTOS GLASS
+      =========================== */
+      .graph-card {
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.55);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        padding: 20px;
+      }
 
-/* ===========================
-   GRÁFICOS / MAPA
-=========================== */
-#metograma {
-  width: 100%;
-  height: 30vh;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.8);
-}
+      /* ===========================
+         GRÁFICOS / MAPA
+      =========================== */
+      #metograma {
+        width: 100%;
+        height: 30vh;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.8);
+      }
 
-#mapa {
-  flex-grow: 1;
-  aspect-ratio: 1 / 1;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.8);
-  max-width: 50vw;
-  max-height: 50vw;
-}
+      #mapa {
+        flex-grow: 1;
+        aspect-ratio: 1 / 1;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.8);
+        max-width: 50vw;
+        max-height: 50vw;
+      }
 
-/* ===========================
-   CONTÊINERS DE LAYOUT
-=========================== */
-.map-container {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 2vw;
-  align-items: center;       /* alinhamento vertical */
-  justify-content: center;   /* alinhamento horizontal */
-}
+      /* ===========================
+         CONTÊINERS DE LAYOUT
+      =========================== */
+      .map-container {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 2vw;
+        align-items: center;       /* alinhamento vertical */
+        justify-content: center;   /* alinhamento horizontal */
+      }
 
-.controls-side {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 25%;
-  min-width: 180px;
-  align-items: flex-start;
-}
+      .controls-side {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 25%;
+        min-width: 180px;
+        align-items: flex-start;
+      }
 
-.controls-side .btn-group {
-  display: flex;
-  gap: 10px;
-  width: 100%;
-}
+      .controls-side .btn-group {
+        display: flex;
+        gap: 10px;
+        width: 100%;
+      }
 
-.controls-side .btn-group .btn {
-  flex: 1;
-  min-width: 0;
-}
+      .controls-side .btn-group .btn {
+        flex: 1;
+        min-width: 0;
+      }
 
-/* ===========================
-   SELECTS
-=========================== */
-select.form-select,
-.controls-side select.form-select {
-  border-radius: 12px;
-  width: 300px !important;
-  max-width: 100%;
-  box-sizing: border-box;
-}
+      /* ===========================
+         SELECTS
+      =========================== */
+      select.form-select,
+      .controls-side select.form-select {
+        border-radius: 12px;
+        width: 300px !important;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
 
-/* ===========================
-   BOTÕES
-=========================== */
-.btn {
-  border-radius: 12px !important;
-}
+      /* ===========================
+         BOTÕES
+      =========================== */
+      .btn {
+        border-radius: 12px !important;
+      }
 
-.control-btn {
-  border-radius: 12px !important;
-  border: 1px solid #c7ccd1 !important;
-  background: #ffffff !important;
-  color: #2a3d54 !important;
-  font-weight: 500;
-  padding: 8px 16px;
-  margin: 0 10px;
-  transition: all 0.25s ease;
-}
+      .control-btn {
+        border-radius: 12px !important;
+        border: 1px solid #c7ccd1 !important;
+        background: #ffffff !important;
+        color: #2a3d54 !important;
+        font-weight: 500;
+        padding: 8px 16px;
+        margin: 0 10px;
+        transition: all 0.25s ease;
+      }
 
-.control-btn:hover {
-  background: #e7edf3 !important;
-}
+      .control-btn:hover {
+        background: #e7edf3 !important;
+      }
 
-.control-btn:active {
-  background: #d1d9e0 !important;
-}
+      .control-btn:active {
+        background: #d1d9e0 !important;
+      }
 
-.icon {
-  font-size: 1.2rem;
-  margin-right: 6px;
-}
+      .icon {
+        font-size: 1.2rem;
+        margin-right: 6px;
+      }
 
-/* ===========================
-   CAMADAS DE FUNDO (TOGGLE)
-=========================== */
-.bg-layer-controls.is-collapsed {
-  display: none;
-}
+      /* ===========================
+         CAMADAS DE FUNDO (TOGGLE)
+      =========================== */
+      .bg-layer-controls.is-collapsed {
+        display: none;
+      }
 
-.bg-toggle-btn {
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: #2a3d54;
-  font-size: 0.9rem;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
+      .bg-toggle-btn {
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: #2a3d54;
+        font-size: 0.9rem;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
 
-.bg-toggle-btn:hover {
-  color: #1f2f40;
-}
+      .bg-toggle-btn:hover {
+        color: #1f2f40;
+      }
 
-.controls-side .bg-toggle-wrapper {
-  width: 300px;
-  max-width: 100%;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+      .controls-side .bg-toggle-wrapper {
+        width: 300px;
+        max-width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
 
-/* ===========================
-   LEGENDA DE MARCADORES
-=========================== */
-.marker-legend {
-  width: 300px;
-  max-width: 100%;
-  border: 1px solid rgba(42, 61, 84, 0.15);
-  border-radius: 10px;
-  padding: 8px 10px;
-  background: rgba(255, 255, 255, 0.65);
-}
+      /* ===========================
+         LEGENDA DE MARCADORES
+      =========================== */
+      .marker-legend {
+        width: 300px;
+        max-width: 100%;
+        border: 1px solid rgba(42, 61, 84, 0.15);
+        border-radius: 10px;
+        padding: 8px 10px;
+        background: rgba(255, 255, 255, 0.65);
+      }
 
-.marker-legend-item i {
-  font-size: 14px;
-  color: black;
-  margin-right: 4px;
-}
+      .marker-legend-item i {
+        font-size: 14px;
+        color: black;
+        margin-right: 4px;
+      }
 
-.marker-legend-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.85rem;
-  color: #2a3d54;
-}
+      .marker-legend-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.85rem;
+        color: #2a3d54;
+      }
 
-.marker-legend-symbol {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 16px;
-  font-weight: 700;
-}
+      .marker-legend-symbol {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 16px;
+        font-weight: 700;
+      }
 
-/* ===========================
-   RESPONSIVIDADE
-=========================== */
-@media (max-width: 768px) {
-  .map-container {
-    flex-direction: column;
-    align-items: center;
-  }
+      /* ===========================
+         RESPONSIVIDADE
+      =========================== */
+      @media (max-width: 768px) {
+        .map-container {
+          flex-direction: column;
+          align-items: center;
+        }
 
-  #mapa {
-    width: 90vw;
-    height: 90vw;
-    max-width: none;
-    max-height: none;
-  }
+        #mapa {
+          width: 90vw;
+          height: 90vw;
+          max-width: none;
+          max-height: none;
+        }
 
-  .controls-side {
-    width: 90vw;
-    min-width: 0;
-    margin-left: 0;
-    align-items: center;
-  }
+        .controls-side {
+          width: 90vw;
+          min-width: 0;
+          margin-left: 0;
+          align-items: center;
+        }
 
-  .controls-side .btn-group {
-    flex-direction: column;
-    width: 100%;
-  }
+        .controls-side .btn-group {
+          flex-direction: column;
+          width: 100%;
+        }
 
-  .header-flex {
-    flex-direction: column;
-    text-align: center !important;
-  }
+        .header-flex {
+          flex-direction: column;
+          text-align: center !important;
+        }
 
-.header-logos .brand-logo {
-  height: 80px;
-  opacity: 0.95;
-  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.25));
-  transition: transform .25s ease, opacity .25s ease;
-}
+      .header-logos .brand-logo {
+        height: 80px;
+        opacity: 0.95;
+        filter: drop-shadow(0 1px 3px rgba(0,0,0,0.25));
+        transition: transform .25s ease, opacity .25s ease;
+      }
 
-  .header-title {
-    text-align: center !important;
-  }
-/* ===========================
-   BOTÕES DE HORAS VISÍVEIS
-=========================== */
-.control-btn-hour {
-  border-radius: 12px;
-  border: 1px solid #c7ccd1 !important; /* borda sempre visível */
-  border-color: #c7ccd1 !important;  /* mantém borda visível */
-  background: #ffffff !important;         /* fundo padrão */
-  color: #2a3d54 !important;
-  font-weight: 500;
-  padding: 6px 12px;
-  font-size: 0.85rem;
-  transition: all 0.25s ease;
-  cursor: pointer;
-}
+        .header-title {
+          text-align: center !important;
+        }
+      /* ===========================
+         BOTÕES DE HORAS VISÍVEIS
+      =========================== */
+      .control-btn-hour {
+        border-radius: 12px;
+        border: 1px solid #c7ccd1 !important; /* borda sempre visível */
+        border-color: #c7ccd1 !important;  /* mantém borda visível */
+        background: #ffffff !important;         /* fundo padrão */
+        color: #2a3d54 !important;
+        font-weight: 500;
+        padding: 6px 12px;
+        font-size: 0.85rem;
+        transition: all 0.25s ease;
+        cursor: pointer;
+      }
 
-/* Hover: muda fundo cinza só quando passar mouse */
-.control-btn-hour:hover {
-  background: #e7edf3 !important;
-}
+      /* Hover: muda fundo cinza só quando passar mouse */
+      .control-btn-hour:hover {
+        background: #e7edf3 !important;
+      }
 
-/* Botão ativo: fundo cinza fixo, borda visível */
-.control-btn-hour.active {
-  border-color: #c7ccd1 !important;  /* mantém borda visível */
-  background: #e7edf3 !important;    /* cinza claro fixo */
-  color: #2a3d54 !important;         /* mantém cor do texto */
-}
+      /* Botão ativo: fundo cinza fixo, borda visível */
+      .control-btn-hour.active {
+        border-color: #c7ccd1 !important;  /* mantém borda visível */
+        background: #e7edf3 !important;    /* cinza claro fixo */
+        color: #2a3d54 !important;         /* mantém cor do texto */
+      }
 
-.alert-demo {
-  margin-top: 10px;
-  padding: 10px 14px;
-  border-radius: 10px;
+      .alert-demo {
+        margin-top: 10px;
+        padding: 10px 14px;
+        border-radius: 10px;
 
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(8px);
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(8px);
 
-  border: 1px solid rgba(42, 61, 84, 0.15);
+        border: 1px solid rgba(42, 61, 84, 0.15);
 
-  font-size: 0.85rem;
-  color: #2a3d54;
+        font-size: 0.85rem;
+        color: #2a3d54;
 
-  display: flex;
-  align-items: center;
-   border-left: 4px solid #0d6efd;
-  gap: 6px;
+        display: flex;
+        align-items: center;
+         border-left: 4px solid #0d6efd;
+        gap: 6px;
 
-  max-width: 520px;
-}
-</style>
+        max-width: 520px;
+      }
+    </style>
   </head>
 
   <body>
-  <div class="container py-4">
+    <div class="container py-4">
+      <!-- Linha decorativa abaixo do header -->
+      <hr class="header-divider my-3" />
 
-    <!-- Linha decorativa abaixo do header -->
-    <hr class="header-divider my-3">
+      <!-- Título -->
+      <div class="row mb-4">
+        <div class="col-12">
+          <div class="header-flex d-flex justify-content-between align-items-center flex-wrap">
+            <!-- TÍTULO + SUBTÍTULO -->
+            <div class="header-title text-start">
+              <h2 class="fw-bold mb-1">
+                <i class="bi bi-wind me-2 text-primary opacity-75"></i>
+                Previsão de Qualidade do Ar - Usina Pampa Sul
+              </h2>
 
-    <!-- Título -->
-    <div class="row mb-4">
-      <div class="col-12">
-        <div class="header-flex d-flex justify-content-between align-items-center flex-wrap">
+              <p class="text-muted mb-0">
+                <i class="bi bi-cloud-drizzle me-1 opacity-75"></i>
+                Modelo WRF–Chem
+              </p>
+            </div>
 
-          <!-- TÍTULO + SUBTÍTULO -->
-          <div class="header-title text-start">
-            <h2 class="fw-bold mb-1">
-              <i class="bi bi-wind me-2 text-primary opacity-75"></i>
-              Previsão de Qualidade do Ar - Usina Pampa Sul
-            </h2>
+            <!-- LOGOS -->
+            <div class="header-logos d-flex align-items-center gap-3 mt-3 mt-md-0">
+              <a href="https://www.ufrgs.br" target="_blank" rel="noopener">
+                <img class="brand-logo" src="/ufrgs.jpg" alt="Logo institucional" />
+              </a>
 
-            <p class="text-muted mb-0">
-              <i class="bi bi-cloud-drizzle me-1 opacity-75"></i>
-              Modelo WRF–Chem
-            </p>
+              <a href="https://www.ufrgs.br/labmqa/" target="_blank" rel="noopener">
+                <img class="brand-logo" src="/logo_RIC.png" alt="Logo do projeto" />
+              </a>
+            </div>
+
+            <div class="alert-demo mt-3">
+              <i class="bi bi-info-circle me-2"></i>
+              <span>
+                Este dashboard utiliza dados reduzidos (espacial e temporalmente) para fins de demonstração.
+                A visualização da camada de fundo via satélite foi desativada devido a limitações de armazenamento do GitHub.
+              </span>
+            </div>
           </div>
-
-	<!-- LOGOS -->
-	<div class="header-logos d-flex align-items-center gap-3 mt-3 mt-md-0">
-
-	  <a href="https://www.ufrgs.br" target="_blank" rel="noopener">
-	    <img class="brand-logo" src="/ufrgs.jpg" alt="Logo institucional" />
-	  </a>
-
-	  <a href="https://www.ufrgs.br/labmqa/" target="_blank" rel="noopener">
-	    <img class="brand-logo" src="/logo_RIC.png" alt="Logo do projeto" />
-	  </a>
-
-	</div>
-	<div class="alert-demo mt-3">
-	  <i class="bi bi-info-circle me-2"></i>
-	  <span>
-		Este dashboard utiliza dados reduzidos (espacial e temporalmente) para fins de demonstração.
-		A visualização da camada de fundo via satélite foi desativada devido a limitações de armazenamento do GitHub.
-	  </span>
-	</div>
         </div>
       </div>
-    </div>
 
-    <div class="row mb-4">
-      <div class="col-12">
-        <div class="graph-card">
+      <div class="row mb-4">
+        <div class="col-12">
+          <div class="graph-card">
+            <div class="d-flex justify-content-between mb-2">
+              <h5 class="fw-bold mb-0">
+                <i class="bi bi-map me-1 text-success opacity-75"></i>
+                Mapa
+              </h5>
+            </div>
 
-          <div class="d-flex justify-content-between mb-2">
-            <h5 class="fw-bold mb-0">
-              <i class="bi bi-map me-1 text-success opacity-75"></i>
-              Mapa
-            </h5>
+            <div class="map-container">
+              <div id="mapa"></div>
 
-          </div>
-
-          <div class="map-container">
-
-            <div id="mapa"></div>
-
-            <div class="controls-side">
-				 <!-- Seleção de Data -->
-				<div>
-				  <label class="form-label fw-semibold">
-					<i class="bi bi-calendar-event me-1 opacity-75"></i>
-					Data da Rodada
-				  </label>
-
-				  <select id="selectRunDate" class="form-select shadow-sm"></select>
-
-				  <div id="runDateMsg" class="text-danger small mt-1" style="display:none">
-					Arquivo de previsão não encontrado.
-				  </div>
-				</div>
-              <!-- Select de variável -->
-              <div>
-                <label class="form-label fw-semibold">
-                  <i class="bi bi-sliders2-vertical me-1 opacity-75"></i>
-                  Variável
-                </label>
-                <select id="selectVar" class="form-select shadow-sm">
-                </select>
-              </div>
-
-              <!-- Botões -->
-              <div class="btn-group">
-                <button id="btnPrev" class="btn control-btn">
-                  <i class="bi bi-chevron-left icon"></i>
-                </button>
-
-                <button id="btnPlayPause" class="btn control-btn">
-                  <i class="bi bi-play-fill icon" id="iconPlayPause"></i>
-                </button>
-
-                <button id="btnNext" class="btn control-btn">
-                  <i class="bi bi-chevron-right icon"></i>
-                </button>
-              </div>
-
-              <!-- Hora -->
-              <div>
-                <span id="horaAtual" class="text-muted"></span>
-              </div>
-
-              <!-- Legenda de marcadores -->
-              <div class="marker-legend" id="markerLegend" style="display: none">
-                <div class="fw-semibold mb-1">Marcadores</div>
-                <div id="markerLegendItems"></div>
-              </div>
-
-              <!-- Camadas de Fundo -->
-              <div>
-                <div class="bg-toggle-wrapper mb-2">
-                  <label class="form-label fw-semibold mb-0">
-                    <i class="bi bi-layers-half me-1 opacity-75"></i>
-                    Camadas de Fundo
+              <div class="controls-side">
+                <!-- Seleção de Data -->
+                <div>
+                  <label class="form-label fw-semibold">
+                    <i class="bi bi-calendar-event me-1 opacity-75"></i>
+                    Data da Rodada
                   </label>
 
-                  <button
-                    type="button"
-                    id="btnToggleBgControls"
-                    class="bg-toggle-btn"
-                    aria-expanded="false"
-                  >
-                    <i class="bi bi-chevron-down" id="iconToggleBgControls"></i>
+                  <select id="selectRunDate" class="form-select shadow-sm"></select>
+
+                  <div id="runDateMsg" class="text-danger small mt-1" style="display: none">
+                    Arquivo de previsão não encontrado.
+                  </div>
+                </div>
+
+                <!-- Variável -->
+                <div>
+                  <!-- a div "vazia" é só para agrupar a camada de fundo e os horários -->
+                  <label class="form-label fw-semibold">
+                    <i class="bi bi-sliders2-vertical me-1 opacity-75"></i>
+                    Variável
+                  </label>
+                  <select id="selectVar" class="form-select shadow-sm"></select>
+                </div>
+
+                <!-- Botões -->
+                <div class="btn-group">
+                  <button id="btnPrev" class="btn control-btn">
+                    <i class="bi bi-chevron-left icon"></i>
+                  </button>
+
+                  <button id="btnPlayPause" class="btn control-btn">
+                    <i class="bi bi-play-fill icon" id="iconPlayPause"></i>
+                  </button>
+
+                  <button id="btnNext" class="btn control-btn">
+                    <i class="bi bi-chevron-right icon"></i>
                   </button>
                 </div>
 
-                <div id="backgroundControls" class="bg-layer-controls is-collapsed">
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="bgShapefile"
-                      checked
-                    />
-                    <label class="form-check-label" for="bgShapefile">Shapefile</label>
-                  </div>
-
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="bgSatellite"
-                    />
-                    <label class="form-check-label" for="bgSatellite">Imagem de Satélite</label>
-                  </div>
-
-                  <div id="bgWindArrowsWrapper" style="display: none">
-
-					  <div class="form-check">
-						<input
-						  class="form-check-input"
-						  type="checkbox"
-						  id="bgWindArrows"
-						/>
-						<label class="form-check-label" for="bgWindArrows">
-						  Vel. e Dir. do Vento
-						</label>
-					  </div>
-
-					  <div class="form-check ms-3">
-						<input
-						  class="form-check-input"
-						  type="checkbox"
-						  id="bgWindAnimated"
-						/>
-						<label class="form-check-label" for="bgWindAnimated">
-						  Animar vento
-						</label>
-					  </div>
-
-					</div>
+                <!-- Hora -->
+                <div>
+                  <span id="horaAtual" class="text-muted"></span>
                 </div>
-				<!-- Horas Visíveis -->
-<div class="mt-3">
 
-  <div class="bg-toggle-wrapper mb-2">
-    <label class="form-label fw-semibold mb-0">
-      <i class="bi bi-clock me-1 opacity-75"></i>
-      Horas de Previsão
-    </label>
+                <!-- Legenda -->
+                <div class="marker-legend" id="markerLegend" style="display: none">
+                  <div class="fw-semibold mb-1">Marcadores</div>
+                  <div id="markerLegendItems"></div>
+                </div>
 
-    <button
-      type="button"
-      id="btnToggleHourControls"
-      class="bg-toggle-btn"
-      aria-expanded="false"
-    >
-      <i class="bi bi-chevron-down" id="iconToggleHourControls"></i>
-    </button>
-  </div>
+                <!-- Camadas de Fundo -->
+                <div>
+                  <div class="bg-toggle-wrapper mb-2">
+                    <label class="form-label fw-semibold mb-0">
+                      <i class="bi bi-layers-half me-1 opacity-75"></i>
+                      Camadas de Fundo
+                    </label>
 
-  <div id="hourControls" class="bg-layer-controls">
+                    <button type="button" id="btnToggleBgControls" class="bg-toggle-btn" aria-expanded="false">
+                      <i class="bi bi-chevron-down" id="iconToggleBgControls"></i>
+                    </button>
+                  </div>
 
-    <div class="hours-buttons d-flex flex-wrap gap-1">
+                  <div id="backgroundControls" class="bg-layer-controls is-collapsed">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="bgShapefile" checked />
+                      <label class="form-check-label" for="bgShapefile">Shapefile</label>
+                    </div>
 
-      <button class="btn btn-sm control-btn-hour" data-hour="3">03h</button>
-      <button class="btn btn-sm control-btn-hour" data-hour="6">06h</button>
-      <button class="btn btn-sm control-btn-hour" data-hour="9">09h</button>
-      <button class="btn btn-sm control-btn-hour" data-hour="12">12h</button>
-      <button class="btn btn-sm control-btn-hour" data-hour="15">15h</button>
-      <button class="btn btn-sm control-btn-hour" data-hour="18">18h</button>
-      <button class="btn btn-sm control-btn-hour" data-hour="21">21h</button>
-      <button class="btn btn-sm control-btn-hour" data-hour="24">24h</button>
-      <button class="btn btn-sm control-btn-hour" data-hour="27">27h</button>
-      <button class="btn btn-sm control-btn-hour" data-hour="30">30h</button>
-      <button class="btn btn-sm control-btn-hour" data-hour="33">33h</button>
-      <button class="btn btn-sm control-btn-hour" data-hour="36">36h</button>
-      <button class="btn btn-sm control-btn-hour" data-hour="39">39h</button>
-      <button class="btn btn-sm control-btn-hour" data-hour="42">42h</button>
-      <button class="btn btn-sm control-btn-hour" data-hour="45">45h</button>
-      <button class="btn btn-sm control-btn-hour" data-hour="48">48h</button>
-      <button class="btn btn-sm control-btn-hour" data-hour="51">51h</button>
-      <button class="btn btn-sm control-btn-hour" data-hour="54">54h</button>
-      <button class="btn btn-sm control-btn-hour" data-hour="57">57h</button>
-      <button class="btn btn-sm control-btn-hour" data-hour="60">60h</button>
-      <button class="btn btn-sm control-btn-hour" data-hour="63">63h</button>
-      <button class="btn btn-sm control-btn-hour" data-hour="66">66h</button>
-      <button class="btn btn-sm control-btn-hour" data-hour="69">69h</button>
-      <button class="btn btn-sm control-btn-hour" data-hour="72">72h</button>
-      <button class="btn btn-sm control-btn-hour" data-hour="75">75h</button>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="bgSatellite" />
+                      <label class="form-check-label" for="bgSatellite">Imagem de Satélite</label>
+                    </div>
 
-    </div>
+                    <div id="bgWindArrowsWrapper" style="display: none">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="bgWindArrows" />
+                        <label class="form-check-label" for="bgWindArrows">
+                          Vel. e Dir. do Vento
+                        </label>
+                      </div>
 
-  </div>
-</div>
+                      <div class="form-check ms-3">
+                        <input class="form-check-input" type="checkbox" id="bgWindAnimated" />
+                        <label class="form-check-label" for="bgWindAnimated">
+                          Animar vento
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Horas Visíveis -->
+                  <div class="mt-3">
+                    <div class="bg-toggle-wrapper mb-2">
+                      <label class="form-label fw-semibold mb-0">
+                        <i class="bi bi-clock me-1 opacity-75"></i>
+                        Horas de Previsão
+                      </label>
+
+                      <button type="button" id="btnToggleHourControls" class="bg-toggle-btn" aria-expanded="false">
+                        <i class="bi bi-chevron-down" id="iconToggleHourControls"></i>
+                      </button>
+                    </div>
+
+                    <div id="hourControls" class="bg-layer-controls">
+                      <div class="hours-buttons d-flex flex-wrap gap-1">
+                        <button class="btn btn-sm control-btn-hour" data-hour="3">03h</button>
+                        <button class="btn btn-sm control-btn-hour" data-hour="6">06h</button>
+                        <button class="btn btn-sm control-btn-hour" data-hour="9">09h</button>
+                        <button class="btn btn-sm control-btn-hour" data-hour="12">12h</button>
+                        <button class="btn btn-sm control-btn-hour" data-hour="15">15h</button>
+                        <button class="btn btn-sm control-btn-hour" data-hour="18">18h</button>
+                        <button class="btn btn-sm control-btn-hour" data-hour="21">21h</button>
+                        <button class="btn btn-sm control-btn-hour" data-hour="24">24h</button>
+                        <button class="btn btn-sm control-btn-hour" data-hour="27">27h</button>
+                        <button class="btn btn-sm control-btn-hour" data-hour="30">30h</button>
+                        <button class="btn btn-sm control-btn-hour" data-hour="33">33h</button>
+                        <button class="btn btn-sm control-btn-hour" data-hour="36">36h</button>
+                        <button class="btn btn-sm control-btn-hour" data-hour="39">39h</button>
+                        <button class="btn btn-sm control-btn-hour" data-hour="42">42h</button>
+                        <button class="btn btn-sm control-btn-hour" data-hour="45">45h</button>
+                        <button class="btn btn-sm control-btn-hour" data-hour="48">48h</button>
+                        <button class="btn btn-sm control-btn-hour" data-hour="51">51h</button>
+                        <button class="btn btn-sm control-btn-hour" data-hour="54">54h</button>
+                        <button class="btn btn-sm control-btn-hour" data-hour="57">57h</button>
+                        <button class="btn btn-sm control-btn-hour" data-hour="60">60h</button>
+                        <button class="btn btn-sm control-btn-hour" data-hour="63">63h</button>
+                        <button class="btn btn-sm control-btn-hour" data-hour="66">66h</button>
+                        <button class="btn btn-sm control-btn-hour" data-hour="69">69h</button>
+                        <button class="btn btn-sm control-btn-hour" data-hour="72">72h</button>
+                        <button class="btn btn-sm control-btn-hour" data-hour="75">75h</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
+              <!-- fecha controls-side -->
             </div>
-            <!-- fecha controls-side -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Metograma -->
+      <div class="row">
+        <div class="col-12">
+          <div class="graph-card">
+            <h5 class="fw-bold mb-3">
+              <i class="bi bi-graph-up me-1 text-primary opacity-75"></i>
+              Série Temporal
+            </h5>
+
+            <div class="alert-demo mt-3">
+              <i class="bi bi-info-circle me-2"></i>
+              <span>
+                Devido à redução da resolução espacial, pode ser necessário
+                ajustar o zoom e/ou clicar em diferentes pontos do mapa para
+                selecionar um ponto da grade válido.
+              </span>
+            </div>
+
+            <div id="metograma"></div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Metograma -->
-    <div class="row">
-      <div class="col-12">
-        <div class="graph-card">
-          <h5 class="fw-bold mb-3">
-            <i class="bi bi-graph-up me-1 text-primary opacity-75"></i>
-            Série Temporal
-          </h5>
-          <div class="alert-demo mt-3">
-				  <i class="bi bi-info-circle me-2"></i>
-				  <span>
-          Devido à redução da resolução espacial, pode ser necessário ajustar o zoom e/ou clicar em diferentes pontos do mapa para selecionar um ponto da grade válido.
-        </span>
-				</div>
-          <div id="metograma"></div>
-        </div>
-      </div>
-    </div>
-  </div>
+    <script>
+      const selectRunDate = document.getElementById("selectRunDate");
 
-<script>
+      function formatDateFile(d) {
+        const dd = String(d.getDate()).padStart(2, "0");
+        const mm = String(d.getMonth() + 1).padStart(2, "0");
+        const yy = String(d.getFullYear()).slice(-2);
+        return `${dd}${mm}${yy}`;
+      }
 
-const selectRunDate = document.getElementById("selectRunDate");
+      function populateRunDates() {
+        const today = new Date(2026, 2, 24); // 24/03/2026 fixo pra demontração
+        //const today = new Date();
 
-function formatDateFile(d) {
-  const dd = String(d.getDate()).padStart(2,'0');
-  const mm = String(d.getMonth()+1).padStart(2,'0');
-  const yy = String(d.getFullYear()).slice(-2);
-  return `${dd}${mm}${yy}`;
-}
+        for (let i = 0; i < 1; i++) {
+          const d = new Date(today);
+          d.setDate(today.getDate() - i);
 
-function populateRunDates() {
+          const value = formatDateFile(d);
 
-  const today = new Date();
+          const opt = document.createElement("option");
+          opt.value = value;
+          opt.textContent = d.toLocaleDateString("pt-BR");
 
-  for (let i = 0; i < 1; i++) {
+          selectRunDate.appendChild(opt);
+        }
 
-    const d = new Date(today);
-    d.setDate(today.getDate() - i);
+        // garante que o primeiro valor esteja selecionado
+        if (selectRunDate.options.length > 0) {
+          selectRunDate.value = selectRunDate.options[0].value;
 
-    const value = formatDateFile(d);
+          console.log("Run inicial:", selectRunDate.value);
 
-    const opt = document.createElement("option");
-    opt.value = value;
-    opt.textContent = d.toLocaleDateString("pt-BR");
-
-    selectRunDate.appendChild(opt);
-  }
-
-  // garante que o primeiro valor esteja selecionado
-  if (selectRunDate.options.length > 0) {
-    selectRunDate.value = selectRunDate.options[0].value;
-
-    console.log("Run inicial:", selectRunDate.value);
-
-    loadForecast(selectRunDate.value);
-  }
-}
-
-populateRunDates();
-
-async function loadVariableFrame(varName, frameIndex, dateCode) {
-
-  const file = `${dateCode}/${varName}/t${String(frameIndex).padStart(2,"0")}.json`;
-
-  console.log("Carregando:", file);
-
-  const res = await fetch(file, {cache: "force-cache"});
-
-  if (!res.ok) {
-    throw new Error("arquivo de variável não encontrado: " + file);
-  }
-
-  return await res.json();
-}
-
-async function getFrame(varName, frameIndex) {
-
-  const dateCode = selectRunDate.value;
-
-  if (!data.vars[varName]) {
-    data.vars[varName] = {};
-  }
-
-  if (!data.vars[varName][frameIndex]) {
-
-    const frame = await loadVariableFrame(varName, frameIndex, dateCode);
-
-    data.vars[varName][frameIndex] = frame;
-
-  }
-
-  return data.vars[varName][frameIndex];
-
-}
-
-function interpColor(c1, c2, t) {
-  const r = Math.round(c1[0] + (c2[0] - c1[0]) * t);
-  const g = Math.round(c1[1] + (c2[1] - c1[1]) * t);
-  const b = Math.round(c1[2] + (c2[2] - c1[2]) * t);
-  return `rgb(${r},${g},${b})`;
-}
-
-function atualizarEscalaPoluentes() {
-
-  const poluentes = ["so2","no","P10"];
-
-  poluentes.forEach(v => {
-
-    const frames = data.vars[v].data;
-
-    let maxVal = -Infinity;
-
-    for (const f of frames) {
-      if (!f) continue;
-      for (const row of f) {
-        for (const val of row) {
-          if (Number.isFinite(val) && val > -1 && val < 1000) {
-			  maxVal = Math.max(maxVal,val);
-			}
+          loadForecast(selectRunDate.value);
         }
       }
-    }
 
-    if (v === "so2" || v === "no" || v === "P10") {
+      populateRunDates();
 
-      if (maxVal < 1) {
+      async function loadVariableFrame(varName, frameIndex, dateCode) {
+        const file = `${dateCode}/${varName}/t${String(frameIndex).padStart(2, "0")}.json`;
 
-        VAR_CONFIG[v].size = 10;
+        console.log("Carregando:", file);
 
-        const N = 10;
+        const res = await fetch(file, { cache: "force-cache" });
 
-        VAR_CONFIG[v].colorValues =
-          Array.from({length:N},(_,i)=> i*(1/(N-1)));
-
-        VAR_CONFIG[v].colors =
-          VAR_CONFIG[v].colorValues.map(vv => {
-
-            const t = vv/1;
-
-            return interpColor(
-              [180,220,255],   // azul claro
-              [0,80,200],      // azul escuro
-              t
-            );
-
-          });
-
-      }
-
-      else if (maxVal < 10) {
-
-        VAR_CONFIG[v].size = 10;
-
-        const N = 20;
-
-        VAR_CONFIG[v].colorValues =
-          Array.from({length:N},(_,i)=> i*(10/(N-1)));
-
-        VAR_CONFIG[v].colors =
-          VAR_CONFIG[v].colorValues.map(vv => {
-
-            if (vv <= 1) {
-
-              const t = vv/1;
-
-              return interpColor(
-                [180,220,255],
-                [0,80,200],
-                t
-              );
-
-            }
-
-            const t = (vv-1)/(10-1);
-
-            return interpColor(
-              [226,255,226],   // verde claro
-              [20,120,20],     // verde escuro
-              t
-            );
-
-          });
-
-      }
-
-      else if (maxVal < 100) {
-
-        VAR_CONFIG[v].size = 5;
-
-        const N = 50;
-
-        VAR_CONFIG[v].colorValues =
-          Array.from({length:N},(_,i)=> i*(100/(N-1)));
-
-        VAR_CONFIG[v].colors =
-          VAR_CONFIG[v].colorValues.map(vv => {
-
-            if (vv <= VAR_CONFIG[v].minThreshold) {
-				  return "rgba(255,255,255,0)";
-				}
-				
-            if (vv <= 2) {
-
-              const t = vv/2;
-
-              return interpColor(
-                [180,220,255],
-                [0,80,200],
-                t
-              );
-
-            }
-
-            if (vv <= 10) {
-
-              const t = (vv-2)/(10-2);
-
-              return interpColor(
-                [200,240,200],
-                [20,120,20],
-                t
-              );
-
-            }
-
-            const t = (vv-10)/(100-10);
-
-            return interpColor(
-              [255,231,204],   // laranja claro
-              [220,110,20],    // laranja escuro
-              t
-            );
-
-          });
-
-      }
-
-      else {
-
-        VAR_CONFIG[v].size = 5;
-
-        const N = 100;
-
-        VAR_CONFIG[v].colorValues =
-          Array.from({length:N},(_,i)=> i*(maxVal/(N-1)));
-
-        VAR_CONFIG[v].colors =
-          VAR_CONFIG[v].colorValues.map(vv => {
-
-            if (vv <= 2) {
-
-              const t = vv/2;
-
-              return interpColor(
-                [180,220,255],
-                [0,80,200],
-                t
-              );
-
-            }
-
-            if (vv <= 10) {
-
-              const t = (vv-2)/(10-2);
-
-              return interpColor(
-                [200,240,200],
-                [20,120,20],
-                t
-              );
-
-            }
-
-            if (vv <= 100) {
-
-              const t = (vv-10)/(100-10);
-
-              return interpColor(
-                [255,220,180],
-                [220,110,20],
-                t
-              );
-
-            }
-
-            const t = (vv-100)/(maxVal-100);
-
-            return interpColor(
-              [255,200,200],   // vermelho claro
-              [180,0,0],       // vermelho escuro
-              t
-            );
-
-          });
-
-      }
-
-    }
-
-  });
-
-}
-
-
-const VAR_CONFIG = {
-  // Qualidade do ar
-  so2: {
-    meto: "line",
-    unit: "µg/m³",
-    minThreshold: 0.01
-  },
-
-  no: {
-    meto: "line",
-    unit: "µg/m³",
-    minThreshold: 1
-  },
-
-  P10: {
-    meto: "line",
-    unit: "µg/m³",
-    minThreshold: 1
-  },
-
-  // Meteorologia
-T2: (function() {
-  const now = new Date();
-  const month = now.getMonth(); // 0 = janeiro, 11 = dezembro
-  const isSouthHemisphere = true; // ajuste se quiser detectar dinamicamente
-  let colors = [
-    "rgb(10,30,105)", "rgb(14,40,115)", "rgb(18,50,125)", "rgb(22,60,135)",
-    "rgb(28,70,145)", "rgb(34,80,155)", "rgb(42,95,165)", "rgb(50,110,170)",
-    "rgb(60,125,175)", "rgb(70,140,180)", "rgb(85,155,175)", "rgb(100,170,170)",
-    "rgb(120,190,120)", "rgb(150,200,90)", "rgb(180,210,70)", "rgb(200,200,70)",
-    "rgb(215,180,70)", "rgb(225,160,65)", "rgb(230,140,60)", "rgb(235,120,55)",
-    "rgb(240,100,50)", "rgb(242,80,45)", "rgb(240,60,40)", "rgb(230,40,35)",
-    "rgb(220,30,30)", "rgb(210,25,28)", "rgb(200,20,26)", "rgb(190,18,24)",
-    "rgb(180,16,22)", "rgb(170,14,20)", "rgb(160,12,18)"
-  ];
-
-  let colorValues;
-
-  // Verão/Primavera no hemisfério sul: setembro (8) a março (2)
-  if (isSouthHemisphere && (month >= 8 || month <= 2)) {
-    colorValues = Array.from({length: 31}, (_, i) => i + 15); // 15–45°C
-  } else {
-    colorValues = Array.from({length: 36}, (_, i) => i); // 0–35°C
-    // se quiser, você também pode cortar as cores para combinar com 0–35
-    colors = colors.slice(0, 36);
-  }
-
-  return {
-    colors,
-    size: 1,
-    colorValues,
-    meto: "line",
-    unit: "°C"
-  };
-})(),
-
-rh2: {
-colors: [
-  "rgb(224,255,255)", // 0%
-  "rgb(204,255,255)", // 5%
-  "rgb(184,255,255)", // 10%
-  "rgb(164,255,255)", // 15%
-  "rgb(154,245,255)", // 20% - suavizado
-  "rgb(144,235,255)", // 25%
-  "rgb(134,225,255)", // 30%
-  "rgb(124,215,255)", // 35%
-  "rgb(114,205,255)", // 40%
-  "rgb(104,195,255)", // 45%
-  "rgb(94,185,255)",  // 50%
-  "rgb(84,175,240)",  // 55%
-  "rgb(74,165,225)",  // 60%
-  "rgb(64,155,210)",  // 65%
-  "rgb(54,145,195)",  // 70%
-  "rgb(48,135,180)",  // 75%
-  "rgb(42,125,165)",  // 80%
-  "rgb(36,115,150)",  // 85%
-  "rgb(30,105,135)",  // 90%
-  "rgb(24,95,120)"    // 95-100% último tom, mais suave que antes
-],
-
-  colorValues: [
-    0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95, 100
-  ],
-  size:5,
-
-  meto: "line",
-  unit: "%"
-},
-
-WSPD10: {
-  // cores suaves para ventos fracos, cores quentes para ventos fortes
-  colors: [
-    // Azuis escuros (0–5 m/s)
-    "rgb(10,30,105)",  // 0
-    "rgb(14,40,115)",  // 1
-    "rgb(18,50,125)",  // 2
-    "rgb(22,60,135)",  // 3
-    "rgb(28,70,145)",  // 4
-    "rgb(34,80,155)",  // 5
-
-    // Azul-esverdeados (6–10 m/s)
-    "rgb(42,95,165)",  // 6
-    "rgb(50,110,170)", // 7
-    "rgb(60,125,175)", // 8
-    "rgb(70,140,180)", // 9
-    "rgb(85,155,175)", // 10
-
-    // Amarelo suave (11–15 m/s)
-    "rgb(120,190,120)", // 11
-    "rgb(150,200,90)",  // 12
-    "rgb(180,210,70)",  // 13
-    "rgb(200,200,70)",  // 14
-    "rgb(215,180,70)",  // 15
-
-    // Laranjas/vermelhos (16–20 m/s)
-    "rgb(225,160,65)",  // 16
-    "rgb(230,140,60)",  // 17
-    "rgb(235,120,55)",  // 18
-    "rgb(240,100,50)",  // 19
-    "rgb(242,80,45)",   // 20
-
-    // Vermelhos fortes (21–25 m/s)
-    "rgb(240,60,40)",   // 21
-    "rgb(230,40,35)",   // 22
-    "rgb(220,30,30)",   // 23
-    "rgb(210,25,28)",   // 24
-    "rgb(200,20,26)"    // 25
-  ],
-	size: 2,
-  // valores correspondentes
-  colorValues: [0,1,2,3,4,5,6,7,8,9,10,12,15,18,20],
-
-  meto: "line",
-  unit: "m/s"
-},
-
-WDIR10: {
-  colors: [
-    "rgb(30,60,40)",   // 0° - tom mais escuro
-    "rgb(45,75,50)",   // 30°
-    "rgb(60,90,60)",   // 60°
-    "rgb(75,105,70)",  // 90°
-    "rgb(90,120,80)",  // 120°
-    "rgb(105,135,90)", // 150°
-    "rgb(120,150,100)",// 180° - tom mais claro
-    "rgb(105,135,90)", // 210°
-    "rgb(90,120,80)",  // 240°
-    "rgb(75,105,70)",  // 270°
-    "rgb(60,90,60)",   // 300°
-    "rgb(45,75,50)",   // 330°
-    "rgb(30,60,40)"    // 360° - ciclo fechado
-  ],
-  size: 30,
-
-  colorValues: [0,30,60,90,120,150,180,210,240,270,300,330,360],
-
-  meto: "line",
-  unit: "°"
-},
-
-RAIN_ACC: {
-  colors: [
-    "rgb(240,248,255)", // 0 mm
-    "rgb(220,235,255)", // 5
-    "rgb(200,220,255)", // 10
-    "rgb(180,205,255)", // 15
-    "rgb(160,190,255)", // 20
-    "rgb(140,175,255)", // 25
-    "rgb(120,160,255)", // 30
-    "rgb(100,145,255)", // 35
-    "rgb(80,130,255)",  // 40
-    "rgb(60,115,255)",  // 45
-    "rgb(45,100,240)",  // 50
-    "rgb(35,85,220)",   // 55
-    "rgb(30,70,200)",   // 60
-    "rgb(25,60,180)",   // 65
-    "rgb(22,50,160)",   // 70
-    "rgb(20,40,140)",   // 75
-    "rgb(18,35,120)",   // 80
-    "rgb(15,30,105)",   // 85
-    "rgb(12,25,90)",    // 90
-    "rgb(10,20,75)",    // 95
-    "rgb(8,15,60)",     // 100
-    "rgb(6,12,50)",     // 105
-    "rgb(5,10,40)",     // 110
-    "rgb(4,8,30)",      // 115
-    "rgb(3,5,20)"       // 120
-  ],
-  size:5,
-  colorValues: Array.from({length: 25}, (_, i) => i*5), // 0,5,10,...,120 mm
-  meto: "bar",
-  unit: "mm"
-},
-
-  RAINRATE: {
-    colors: ["rgb(255,255,255)","rgb(204,229,255)","rgb(153,204,255)","rgb(128,255,128)","rgb(255,255,128)","rgb(255,204,102)","rgb(255,128,51)"],
-    colorValues: [0,1,2,3,4,5,6,7,8,9,10,12,15,18,20,25,30],
-    meto: "bar",
-    unit: "mm/h"
-  }
-};
-
-async function loadForecast(dateCode) {
-  const msg = document.getElementById("runDateMsg");
-
-  try {
-    // Carrega arquivos principais
-    const [gridRes, layersRes] = await Promise.all([
-      fetch(`${dateCode}/grid.json?v=` + Date.now(), { cache: "force-cache" }),
-      fetch(`${dateCode}/layers.json?v=` + Date.now(), { cache: "force-cache" })
-    ]);
-
-    if (!gridRes.ok || !layersRes.ok) {
-      throw new Error("arquivos principais não encontrados");
-    }
-
-    const grid = await gridRes.json();
-    const layers = await layersRes.json();
-
-    // Extrair o array de tempo do grid
-    const time = grid.time; // importante para frames
-
-    const vars = Object.keys(VAR_CONFIG);
-
-    // Inicializa data.vars com cada variável
-    const varsData = {};
-    for (const v of vars) {
-      const framePromises = [];
-      for (let t = 0; t < time.length; t++) {
-        const url = `${dateCode}/${v}/t${String(t).padStart(2, "0")}.json`;
-        framePromises.push(
-          fetch(url)
-            .then((r) => r.ok ? r.json() : null)  // se 404, retorna null
-            .catch(() => null)                    // se erro de rede, retorna null
-        );
-      }
-      const frames = await Promise.all(framePromises);
-
-      // Substitui frames nulos por array do tamanho correto preenchido com NaN
-      const sampleShape = frames.find(f => f !== null)?.data;
-      const fallback = sampleShape ? sampleShape.map(r => r.map(_ => NaN)) : [];
-      varsData[v] = {
-        data: frames.map(f => f ? f.data : fallback)
-      };
-    }
-
-    // Combina grid, layers e vars no objeto global "data"
-    data = { ...grid, ...layers, vars: varsData };
-
-    // -----------------------------
-    // Calcula ponto fixo do metograma
-    // -----------------------------
-    const FIXED_LAT = -31.451322222;
-    const FIXED_LON = -53.747327778;
-
-    let best_i = 0;
-    let best_j = 0;
-    let bestDist = Infinity;
-
-    for (let i = 0; i < data.lat.length; i++) {
-      for (let j = 0; j < data.lat[0].length; j++) {
-        const dLat = data.lat[i][j] - FIXED_LAT;
-        const dLon = data.lon[i][j] - FIXED_LON;
-        const dist = dLat * dLat + dLon * dLon;
-
-        if (dist < bestDist) {
-          bestDist = dist;
-          best_i = i;
-          best_j = j;
+        if (!res.ok) {
+          throw new Error("arquivo de variável não encontrado: " + file);
         }
+
+        return await res.json();
       }
-    }
 
-    window.GRID_POINT = { i: best_i, j: best_j };
-    // -----------------------------
+      async function getFrame(varName, frameIndex) {
+        const dateCode = selectRunDate.value;
 
-	msg.style.display = "none";
+        if (!data.vars[varName]) {
+          data.vars[varName] = {};
+        }
 
-	// ajusta escalas usando os dados já carregados
-	atualizarEscalaPoluentes();
+        if (!data.vars[varName][frameIndex]) {
+          const frame = await loadVariableFrame(varName, frameIndex, dateCode);
 
-	// inicializa o sistema
-	initSistema();            // e agora o sistema usa a escala certa
+          data.vars[varName][frameIndex] = frame;
+        }
 
-  } catch (err) {
-    console.error(err);
-    msg.style.display = "block";
-  }
-}
+        return data.vars[varName][frameIndex];
+      }
 
-// trocar run quando usuário mudar
-selectRunDate.addEventListener("change", () => {
+      function interpColor(c1, c2, t) {
+        const r = Math.round(c1[0] + (c2[0] - c1[0]) * t);
+        const g = Math.round(c1[1] + (c2[1] - c1[1]) * t);
+        const b = Math.round(c1[2] + (c2[2] - c1[2]) * t);
+        return `rgb(${r},${g},${b})`;
+      }
 
-  console.log("Run selecionado:", selectRunDate.value);
+      function atualizarEscalaPoluentes() {
+        const poluentes = ["so2", "no", "P10"];
 
-  loadForecast(selectRunDate.value);
+        poluentes.forEach((v) => {
+          const frames = data.vars[v].data;
 
-});
+          let maxVal = -Infinity;
 
-
-function initSistema() {
-          window.data = data;
-          window.JSON_WRF = data;
-          console.log("Vars disponíveis:", Object.keys(data.vars));
-
-          const lon = data.lon;
-          const lat = data.lat;
-          let time = data.time;
-		  let currentFrameIndex = 3;
-		  let shapefileAdded = false;
-		  let windBaseField = null;
-		  let shapefileCreated = false;
-		  let shapefileIndices = [];
-		  const lonMin = Math.min(...lon.flat());
-		  const lonMax = Math.max(...lon.flat());
-		  const latMin = Math.min(...lat.flat());
-		  const latMax = Math.max(...lat.flat());
-          const geojson = data.geojson;
-
-          data.time = time;
-
-
-          const AIR_VARS = new Set([
-            "so2",
-            "no",
-            "P10",
-            "PM2_5_DRY",
-          ]);
-
-          // Poluentes com opção extra de fundo com flechas de vento.
-          const POLLUTANT_VARS = new Set(["so2", "no", "P10", "pm10"]);
-
-          function isPollutantVar(variableName) {
-            return (
-              POLLUTANT_VARS.has(variableName) ||
-              POLLUTANT_VARS.has(String(variableName).toLowerCase())
-            );
-          }
-
-
-          const VAR_NAMES = {
-            // Meteorologia
-            T2: "Temperatura a 2 m",
-            rh2: "Umidade Relativa a 2 m",
-            WSPD10: "Velocidade do Vento a 10 m",
-            WDIR10: "Direção do Vento a 10 m",
-            slp: "Pressão ao Nível do Mar (SLP)",
-            THETA_E: "Temperatura Potencial Equivalente",
-            CAPE_2D: "CAPE",
-            CIN: "CIN",
-
-            // Chuva
-            RAIN_ACC: "Chuva Acumulada",
-            RAINRATE: "Taxa de Precipitação (Intensidade)",
-
-            // Qualidade do ar
-            so2: "Dióxido de Enxofre (SO₂)",
-            no: "Óxidos de Nitrogênio (NOₓ)",
-            hcho: "Formaldeído (HCHO)",
-            ald: "Aldeídos Totais",
-            ora2: "Hidrocarbonetos Reativos (ORA2)",
-
-            // Material particulado
-            P10: "Material Particulado PM10",
-            PM2_5_DRY: "Material Particulado PM2.5",
-          };
-
-          // Shapefile como linhas
-          function geojsonToTraces(geojsonObj, color = "black", width = 1, opacity = 1) {
-            const traces = [];
-            if (!geojsonObj || !geojsonObj.features) return traces;
-
-            geojsonObj.features.forEach((feature) => {
-              const geom = feature.geometry;
-
-              const addTrace = (coords) => {
-                traces.push({
-                  x: coords.map((p) => p[0]),
-                  y: coords.map((p) => p[1]),
-                  mode: "lines",
-                  type: "scatter",
-                  line: { color, width },
-                  opacity,
-                  hoverinfo: "none",
-                  showlegend: false,
-                  fill: "none",
-                  fillcolor: "rgba(0,0,0,0)",
-                });
-              };
-
-              if (geom.type === "Polygon") geom.coordinates.forEach(addTrace);
-              if (geom.type === "MultiPolygon") {
-                geom.coordinates.forEach((poly) => poly.forEach(addTrace));
-              }
-              if (geom.type === "LineString") addTrace(geom.coordinates);
-              if (geom.type === "MultiLineString") {
-                geom.coordinates.forEach((line) => addTrace(line));
-              }
-            });
-
-            return traces;
-          }
-
-          // Camadas
-          // Marcadores fixos
-          const markerTraces = [];
-          const markerLegend = document.getElementById("markerLegend");
-          const markerLegendItems = document.getElementById("markerLegendItems");
-
-          if (data.geojson_layers?.marcadores) {
-            data.geojson_layers.marcadores.features.forEach((f, idx) => {
-              const [markerLon, markerLat] = f.geometry.coordinates;
-              const markerSymbol = idx === 0 ? "square" : "x";
-              const legendSymbol = idx === 0
-		  ? '<i class="bi bi-square-fill"></i>'
-		  : '<i class="bi bi-x-lg"></i>';
-
-              markerTraces.push({
-                type: "scatter",
-                mode: "markers+text",
-                x: [markerLon],
-                y: [markerLat],
-                textposition: "top center",
-                marker: {
-                  size: 7,
-                  color: "black",
-                  symbol: markerSymbol,
-                },
-                hovertemplate:
-                  `<b>${f.properties.nome}</b><br>` +
-                  `lat: ${markerLat}<br>` +
-                  `lon: ${markerLon}<extra></extra>`,
-                showlegend: false,
-              });
-
-              markerLegendItems.insertAdjacentHTML(
-                "beforeend",
-                `<div class="marker-legend-item"><span class="marker-legend-symbol">${legendSymbol}</span>${f.properties.nome}</div>`
-              );
-            });
-
-            if (data.geojson_layers.marcadores.features.length > 0) {
-              markerLegend.style.display = "block";
-            }
-          }	
-          const rodsTraces = geojsonToTraces(
-            data.geojson_layers?.rodovias,
-            "silver",
-            0.5,
-            1,
-            "rodovias"
-          );
-          const riosTraces = geojsonToTraces(
-            data.geojson_layers?.hidrografia,
-            "blue",
-            0.6,
-            1,
-            "rios"
-          );
-          const areaEdifTraces = geojsonToTraces(
-            data.geojson_layers?.area_edificada,
-            "gray",
-            0.3,
-            1,
-            "area_edificada"
-          );
-          const ferrTraces = geojsonToTraces(
-            data.geojson_layers?.ferrovias,
-            "grey",
-            0.8,
-            1,
-            "ferrovias"
-          );
-          
-          const shapeTraces = geojsonToTraces(geojson, "black", 0.8, 1, "shapefile");
-
-
-          // Preenche o select
-          const selectVar = document.getElementById("selectVar");
-          const backgroundControls = document.getElementById("backgroundControls");
-          const btnToggleBgControls = document.getElementById("btnToggleBgControls");
-          const iconToggleBgControls = document.getElementById(
-            "iconToggleBgControls"
-          );
-          btnToggleHourControls.addEventListener("click", () => {
-			  const isVisible = hourControls.classList.contains("is-collapsed");
-			  setHourControlsVisible(isVisible);
-			});
-          const labelToggleBgControls = document.getElementById(
-            "labelToggleBgControls"
-          );
-          const vars = Object.keys(VAR_CONFIG);
-          vars.forEach((v) => {
-            const opt = document.createElement("option");
-            opt.value = v;
-            opt.text = VAR_NAMES[v] || v.toUpperCase();
-            selectVar.appendChild(opt);
-          });
-
-          window.currentVar = vars[0];  // global
-		  window.currentFrameIndex = 0;  // global
-
-
-	// Converte timestamp WRF → Date em UTC
-	function parseWRFTimestamp(ts) {
-	  const tsUTC = ts.replace(" ", "T") + "Z";
-	  return new Date(tsUTC);
-	}
-
-	// Formata ajustando para fuso local do PC
-	function formatWRFTime(ts) {
-	  const dateUTC = parseWRFTimestamp(ts);
-	  // Usa o horário local do PC
-	  const yyyy = dateUTC.getFullYear();
-	  const mm = String(dateUTC.getMonth() + 1).padStart(2, "0");
-	  const dd = String(dateUTC.getDate()).padStart(2, "0");
-	  const hh = String(dateUTC.getHours()).padStart(2, "0");
-	  const min = String(dateUTC.getMinutes()).padStart(2, "0");
-
-	  return `${dd}/${mm}/${yyyy} ${hh}:${min}`;
-	}
-	
-          // Mapa (contour + shapefile)
-          const GLOBAL_META = {};
-
-          for (const v of Object.keys(data.vars)) {
-            let gmin = Infinity;
-            let gmax = -Infinity;
-
-            const series = data.vars[v].data;
-
-            for (let t = 0; t < series.length; t++) {
-              const frame = series[t];
-
-              for (let i = 0; i < frame.length; i++) {
-                const row = frame[i];
-
-                for (let j = 0; j < row.length; j++) {
-                  const val = row[j];
-
-                  if (typeof val === "number" && !Number.isNaN(val)) {
-                    if (val < gmin) gmin = val;
-                    if (val > gmax) gmax = val;
-                  }
+          for (const f of frames) {
+            if (!f) continue;
+            for (const row of f) {
+              for (const val of row) {
+                if (Number.isFinite(val) && val > -1 && val < 1000) {
+                  maxVal = Math.max(maxVal, val);
                 }
               }
             }
-
-            GLOBAL_META[v] = { globalMin: gmin, globalMax: gmax };
           }
 
-          // Monta uma camada de vetores (flechas) de vento.
-          // Convenção WRF: direção indica de ONDE o vento vem.
-          // Para a flecha apontar para ONDE o vento vai, soma-se 180°.
-          const bgShapefile = document.getElementById("bgShapefile");
-          const bgSatellite = document.getElementById("bgSatellite");
-          const bgWindArrows = document.getElementById("bgWindArrows");
-          const bgWindArrowsWrapper = document.getElementById("bgWindArrowsWrapper");
-          let windPhase = 0;
+          if (v === "so2" || v === "no" || v === "P10") {
+            if (maxVal < 1) {
+              VAR_CONFIG[v].size = 10;
 
-          function updateBackgroundOptionsForVar() {
-            const pollutantMode = isPollutantVar(currentVar);
+              const N = 10;
 
-            bgWindArrowsWrapper.style.display = pollutantMode ? "block" : "none";
+              VAR_CONFIG[v].colorValues = Array.from(
+                { length: N },
+                (_, i) => i * (1 / (N - 1)),
+              );
 
-            if (!pollutantMode) {
-              bgWindArrows.checked = false;
+              VAR_CONFIG[v].colors = VAR_CONFIG[v].colorValues.map((vv) => {
+                const t = vv / 1;
+
+                return interpColor(
+                  [180, 220, 255], // azul claro
+                  [0, 80, 200], // azul escuro
+                  t,
+                );
+              });
+            } else if (maxVal < 10) {
+              VAR_CONFIG[v].size = 10;
+
+              const N = 20;
+
+              VAR_CONFIG[v].colorValues = Array.from(
+                { length: N },
+                (_, i) => i * (10 / (N - 1)),
+              );
+
+              VAR_CONFIG[v].colors = VAR_CONFIG[v].colorValues.map((vv) => {
+                if (vv <= 1) {
+                  const t = vv / 1;
+
+                  return interpColor([180, 220, 255], [0, 80, 200], t);
+                }
+
+                const t = (vv - 1) / (10 - 1);
+
+                return interpColor(
+                  [226, 255, 226], // verde claro
+                  [20, 120, 20], // verde escuro
+                  t,
+                );
+              });
+            } else if (maxVal < 100) {
+              VAR_CONFIG[v].size = 5;
+
+              const N = 50;
+
+              VAR_CONFIG[v].colorValues = Array.from(
+                { length: N },
+                (_, i) => i * (100 / (N - 1)),
+              );
+
+              VAR_CONFIG[v].colors = VAR_CONFIG[v].colorValues.map((vv) => {
+                if (vv <= VAR_CONFIG[v].minThreshold) {
+                  return "rgba(255,255,255,0)";
+                }
+
+                if (vv <= 2) {
+                  const t = vv / 2;
+
+                  return interpColor([180, 220, 255], [0, 80, 200], t);
+                }
+
+                if (vv <= 10) {
+                  const t = (vv - 2) / (10 - 2);
+
+                  return interpColor([200, 240, 200], [20, 120, 20], t);
+                }
+
+                const t = (vv - 10) / (100 - 10);
+
+                return interpColor(
+                  [255, 231, 204], // laranja claro
+                  [220, 110, 20], // laranja escuro
+                  t,
+                );
+              });
+            } else {
+              VAR_CONFIG[v].size = 5;
+
+              const N = 100;
+
+              VAR_CONFIG[v].colorValues = Array.from(
+                { length: N },
+                (_, i) => i * (maxVal / (N - 1)),
+              );
+
+              VAR_CONFIG[v].colors = VAR_CONFIG[v].colorValues.map((vv) => {
+                if (vv <= 2) {
+                  const t = vv / 2;
+
+                  return interpColor([180, 220, 255], [0, 80, 200], t);
+                }
+
+                if (vv <= 10) {
+                  const t = (vv - 2) / (10 - 2);
+
+                  return interpColor([200, 240, 200], [20, 120, 20], t);
+                }
+
+                if (vv <= 100) {
+                  const t = (vv - 10) / (100 - 10);
+
+                  return interpColor([255, 220, 180], [220, 110, 20], t);
+                }
+
+                const t = (vv - 100) / (maxVal - 100);
+
+                return interpColor(
+                  [255, 200, 200], // vermelho claro
+                  [180, 0, 0], // vermelho escuro
+                  t,
+                );
+              });
+            }
+          }
+        });
+      }
+
+      const VAR_CONFIG = {
+        // Qualidade do ar
+        so2: {
+          meto: "line",
+          unit: "µg/m³",
+          minThreshold: 0.01,
+        },
+
+        no: {
+          meto: "line",
+          unit: "µg/m³",
+          minThreshold: 1,
+        },
+
+        P10: {
+          meto: "line",
+          unit: "µg/m³",
+          minThreshold: 1,
+        },
+
+        // Meteorologia
+        T2: (function () {
+          const now = new Date();
+          const month = now.getMonth(); // 0 = janeiro, 11 = dezembro
+          const isSouthHemisphere = true; // ajuste se quiser detectar dinamicamente
+          let colors = [
+            "rgb(10,30,105)",
+            "rgb(14,40,115)",
+            "rgb(18,50,125)",
+            "rgb(22,60,135)",
+            "rgb(28,70,145)",
+            "rgb(34,80,155)",
+            "rgb(42,95,165)",
+            "rgb(50,110,170)",
+            "rgb(60,125,175)",
+            "rgb(70,140,180)",
+            "rgb(85,155,175)",
+            "rgb(100,170,170)",
+            "rgb(120,190,120)",
+            "rgb(150,200,90)",
+            "rgb(180,210,70)",
+            "rgb(200,200,70)",
+            "rgb(215,180,70)",
+            "rgb(225,160,65)",
+            "rgb(230,140,60)",
+            "rgb(235,120,55)",
+            "rgb(240,100,50)",
+            "rgb(242,80,45)",
+            "rgb(240,60,40)",
+            "rgb(230,40,35)",
+            "rgb(220,30,30)",
+            "rgb(210,25,28)",
+            "rgb(200,20,26)",
+            "rgb(190,18,24)",
+            "rgb(180,16,22)",
+            "rgb(170,14,20)",
+            "rgb(160,12,18)",
+          ];
+
+          let colorValues;
+
+          // Verão/Primavera no hemisfério sul: setembro (8) a março (2)
+          if (isSouthHemisphere && (month >= 8 || month <= 2)) {
+            colorValues = Array.from({ length: 31 }, (_, i) => i + 15); // 15–45°C
+          } else {
+            colorValues = Array.from({ length: 36 }, (_, i) => i); // 0–35°C
+            // se quiser, você também pode cortar as cores para combinar com 0–35
+            colors = colors.slice(0, 36);
+          }
+
+          return {
+            colors,
+            size: 1,
+            colorValues,
+            meto: "line",
+            unit: "°C",
+          };
+        })(),
+
+        rh2: {
+          colors: [
+            "rgb(224,255,255)", // 0%
+            "rgb(204,255,255)", // 5%
+            "rgb(184,255,255)", // 10%
+            "rgb(164,255,255)", // 15%
+            "rgb(154,245,255)", // 20% - suavizado
+            "rgb(144,235,255)", // 25%
+            "rgb(134,225,255)", // 30%
+            "rgb(124,215,255)", // 35%
+            "rgb(114,205,255)", // 40%
+            "rgb(104,195,255)", // 45%
+            "rgb(94,185,255)", // 50%
+            "rgb(84,175,240)", // 55%
+            "rgb(74,165,225)", // 60%
+            "rgb(64,155,210)", // 65%
+            "rgb(54,145,195)", // 70%
+            "rgb(48,135,180)", // 75%
+            "rgb(42,125,165)", // 80%
+            "rgb(36,115,150)", // 85%
+            "rgb(30,105,135)", // 90%
+            "rgb(24,95,120)", // 95-100% último tom, mais suave que antes
+          ],
+
+          colorValues: [
+            0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80,
+            85, 90, 95, 100,
+          ],
+          size: 5,
+
+          meto: "line",
+          unit: "%",
+        },
+
+        WSPD10: {
+          // cores suaves para ventos fracos, cores quentes para ventos fortes
+          colors: [
+            // Azuis escuros (0–5 m/s)
+            "rgb(10,30,105)", // 0
+            "rgb(14,40,115)", // 1
+            "rgb(18,50,125)", // 2
+            "rgb(22,60,135)", // 3
+            "rgb(28,70,145)", // 4
+            "rgb(34,80,155)", // 5
+
+            // Azul-esverdeados (6–10 m/s)
+            "rgb(42,95,165)", // 6
+            "rgb(50,110,170)", // 7
+            "rgb(60,125,175)", // 8
+            "rgb(70,140,180)", // 9
+            "rgb(85,155,175)", // 10
+
+            // Amarelo suave (11–15 m/s)
+            "rgb(120,190,120)", // 11
+            "rgb(150,200,90)", // 12
+            "rgb(180,210,70)", // 13
+            "rgb(200,200,70)", // 14
+            "rgb(215,180,70)", // 15
+
+            // Laranjas/vermelhos (16–20 m/s)
+            "rgb(225,160,65)", // 16
+            "rgb(230,140,60)", // 17
+            "rgb(235,120,55)", // 18
+            "rgb(240,100,50)", // 19
+            "rgb(242,80,45)", // 20
+
+            // Vermelhos fortes (21–25 m/s)
+            "rgb(240,60,40)", // 21
+            "rgb(230,40,35)", // 22
+            "rgb(220,30,30)", // 23
+            "rgb(210,25,28)", // 24
+            "rgb(200,20,26)", // 25
+          ],
+          size: 2,
+          // valores correspondentes
+          colorValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 18, 20],
+
+          meto: "line",
+          unit: "m/s",
+        },
+
+        WDIR10: {
+          colors: [
+            "rgb(30,60,40)", // 0° - tom mais escuro
+            "rgb(45,75,50)", // 30°
+            "rgb(60,90,60)", // 60°
+            "rgb(75,105,70)", // 90°
+            "rgb(90,120,80)", // 120°
+            "rgb(105,135,90)", // 150°
+            "rgb(120,150,100)", // 180° - tom mais claro
+            "rgb(105,135,90)", // 210°
+            "rgb(90,120,80)", // 240°
+            "rgb(75,105,70)", // 270°
+            "rgb(60,90,60)", // 300°
+            "rgb(45,75,50)", // 330°
+            "rgb(30,60,40)", // 360° - ciclo fechado
+          ],
+          size: 30,
+
+          colorValues: [
+            0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360,
+          ],
+
+          meto: "line",
+          unit: "°",
+        },
+
+        RAIN_ACC: {
+          colors: [
+            "rgb(240,248,255)", // 0 mm
+            "rgb(220,235,255)", // 5
+            "rgb(200,220,255)", // 10
+            "rgb(180,205,255)", // 15
+            "rgb(160,190,255)", // 20
+            "rgb(140,175,255)", // 25
+            "rgb(120,160,255)", // 30
+            "rgb(100,145,255)", // 35
+            "rgb(80,130,255)", // 40
+            "rgb(60,115,255)", // 45
+            "rgb(45,100,240)", // 50
+            "rgb(35,85,220)", // 55
+            "rgb(30,70,200)", // 60
+            "rgb(25,60,180)", // 65
+            "rgb(22,50,160)", // 70
+            "rgb(20,40,140)", // 75
+            "rgb(18,35,120)", // 80
+            "rgb(15,30,105)", // 85
+            "rgb(12,25,90)", // 90
+            "rgb(10,20,75)", // 95
+            "rgb(8,15,60)", // 100
+            "rgb(6,12,50)", // 105
+            "rgb(5,10,40)", // 110
+            "rgb(4,8,30)", // 115
+            "rgb(3,5,20)", // 120
+          ],
+          size: 5,
+          colorValues: Array.from({ length: 25 }, (_, i) => i * 5), // 0,5,10,...,120 mm
+          meto: "bar",
+          unit: "mm",
+        },
+
+        RAINRATE: {
+          colors: [
+            "rgb(255,255,255)",
+            "rgb(204,229,255)",
+            "rgb(153,204,255)",
+            "rgb(128,255,128)",
+            "rgb(255,255,128)",
+            "rgb(255,204,102)",
+            "rgb(255,128,51)",
+          ],
+          colorValues: [
+            0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 18, 20, 25, 30,
+          ],
+          meto: "bar",
+          unit: "mm/h",
+        },
+      };
+
+      async function loadForecast(dateCode) {
+        const msg = document.getElementById("runDateMsg");
+
+        try {
+          // Carrega arquivos principais
+          const [gridRes, layersRes] = await Promise.all([
+            fetch(`${dateCode}/grid.json?v=` + Date.now(), {
+              cache: "force-cache",
+            }),
+            fetch(`${dateCode}/layers.json?v=` + Date.now(), {
+              cache: "force-cache",
+            }),
+          ]);
+
+          if (!gridRes.ok || !layersRes.ok) {
+            throw new Error("arquivos principais não encontrados");
+          }
+
+          const grid = await gridRes.json();
+          const layers = await layersRes.json();
+
+          // Extrair o array de tempo do grid
+          const time = grid.time; // importante para frames
+
+          const vars = Object.keys(VAR_CONFIG);
+
+          // Inicializa data.vars com cada variável
+          const varsData = {};
+          for (const v of vars) {
+            const framePromises = [];
+            for (let t = 0; t < time.length; t++) {
+              const url = `${dateCode}/${v}/t${String(t).padStart(2, "0")}.json`;
+              framePromises.push(
+                fetch(url)
+                  .then((r) => (r.ok ? r.json() : null)) // se 404, retorna null
+                  .catch(() => null), // se erro de rede, retorna null
+              );
+            }
+            const frames = await Promise.all(framePromises);
+
+            // Substitui frames nulos por array do tamanho correto preenchido com NaN
+            const sampleShape = frames.find((f) => f !== null)?.data;
+            const fallback = sampleShape
+              ? sampleShape.map((r) => r.map((_) => NaN))
+              : [];
+            varsData[v] = {
+              data: frames.map((f) => (f ? f.data : fallback)),
+            };
+          }
+
+          // Combina grid, layers e vars no objeto global "data"
+          data = { ...grid, ...layers, vars: varsData };
+
+          // -----------------------------
+          // Calcula ponto fixo do metograma
+          // -----------------------------
+          const FIXED_LAT = -31.451322222;
+          const FIXED_LON = -53.747327778;
+
+          let best_i = 0;
+          let best_j = 0;
+          let bestDist = Infinity;
+
+          for (let i = 0; i < data.lat.length; i++) {
+            for (let j = 0; j < data.lat[0].length; j++) {
+              const dLat = data.lat[i][j] - FIXED_LAT;
+              const dLon = data.lon[i][j] - FIXED_LON;
+              const dist = dLat * dLat + dLon * dLon;
+
+              if (dist < bestDist) {
+                bestDist = dist;
+                best_i = i;
+                best_j = j;
+              }
             }
           }
 
-          function setBackgroundControlsVisible(isVisible) {
-            backgroundControls.classList.toggle("is-collapsed", !isVisible);
-            btnToggleBgControls.setAttribute("aria-expanded", String(isVisible));
-            iconToggleBgControls.className = isVisible ? "bi bi-chevron-up" : "bi bi-chevron-down";
-          }
-          
-			function setHourControlsVisible(isVisible) {
-			  hourControls.classList.toggle("is-collapsed", !isVisible);
-			  btnToggleHourControls.setAttribute("aria-expanded", String(isVisible));
-			  iconToggleHourControls.className = isVisible ? "bi bi-chevron-up" : "bi bi-chevron-down";
-			}
+          window.GRID_POINT = { i: best_i, j: best_j };
+          // -----------------------------
 
-          btnToggleBgControls.addEventListener("click", () => {
-            const isCollapsed = backgroundControls.classList.contains("is-collapsed");
-            setBackgroundControlsVisible(isCollapsed);
-          });
+          msg.style.display = "none";
 
-          function getBackgroundState() {
-			  return {
-				visibleShp: bgShapefile.checked,
-				visibleSat: bgSatellite.checked,
-				visibleWindArrows:
-				  bgWindArrowsWrapper.style.display !== "none" &&
-				  bgWindArrows.checked,
+          // ajusta escalas usando os dados já carregados
+          atualizarEscalaPoluentes();
 
-				windAnimated:
-				  bgWindArrowsWrapper.style.display !== "none" &&
-				  bgWindAnimated.checked
-			  };
-			}
-			
-async function buildWindBase(index) {
+          // inicializa o sistema
+          initSistema(); // e agora o sistema usa a escala certa
+        } catch (err) {
+          console.error(err);
+          msg.style.display = "block";
+        }
+      }
 
-  const dirFrame = await getFrame("WDIR10", index);
-  const spdFrame = await getFrame("WSPD10", index);
+      // trocar run quando usuário mudar
+      selectRunDate.addEventListener("change", () => {
+        console.log("Run selecionado:", selectRunDate.value);
 
-  const dir = dirFrame.data;
-  const spd = spdFrame.data;
-
-  const rows = dir.length;
-  const cols = dir[0].length;
-
-  const step = Math.max(1, Math.floor(Math.max(rows, cols) / 25));
-
-  const lonSpan = Math.max(...lon[0]) - Math.min(...lon[0]);
-  const latSpan = Math.max(...lat.map(r => r[0])) - Math.min(...lat.map(r => r[0]));
-
-  const baseLength = Math.min(lonSpan, latSpan) / 35;
-
-  const arrows = [];
-
-  for (let i = 0; i < rows; i += step) {
-    for (let j = 0; j < cols; j += step) {
-
-      const dirFrom = dir[i][j];
-      const speed = spd[i][j];
-
-      if (!Number.isFinite(dirFrom) || !Number.isFinite(speed) || speed <= 0) continue;
-
-      const dirTo = (dirFrom + 180) % 360;
-      const rad = dirTo * Math.PI / 180;
-
-      const ux = Math.sin(rad);
-      const uy = Math.cos(rad);
-
-      const scale = baseLength * (0.5 + Math.min(speed, 20) / 20);
-
-      arrows.push({
-        x: lon[i][j],
-        y: lat[i][j],
-        ux,
-        uy,
-        rad,
-        scale
+        loadForecast(selectRunDate.value);
       });
 
-    }
-  }
-
-  return arrows;
-}
-
-function animateWind() {
-
-  const { windAnimated } = getBackgroundState();
-
-  const fig = document.getElementById("mapa");
-  if (!fig || !fig.data || !windBaseField) {
-    requestAnimationFrame(animateWind);
-    return;
-  }
-
-  const idx = fig.data.findIndex(t => t.name === "wind_arrows");
-
-  if (idx !== -1) {
-
-    const xLines = [];
-    const yLines = [];
-
-    for (const a of windBaseField) {
-
-      const drift = windAnimated && !isPlaying
-        ? a.scale * 0.6 * windPhase
-        : 0;
-
-      const x0 = a.x + a.ux * drift;
-      const y0 = a.y + a.uy * drift;
-
-      const x1 = x0 + a.ux * a.scale;
-      const y1 = y0 + a.uy * a.scale;
-
-      xLines.push(x0, x1, null);
-      yLines.push(y0, y1, null);
-
-      const headLength = a.scale * 0.3;
-      const headAngle = 25 * Math.PI / 180;
-
-      const leftX = x1 - headLength * Math.sin(a.rad - headAngle);
-      const leftY = y1 - headLength * Math.cos(a.rad - headAngle);
-
-      const rightX = x1 - headLength * Math.sin(a.rad + headAngle);
-      const rightY = y1 - headLength * Math.cos(a.rad + headAngle);
-
-      xLines.push(x1, leftX, null);
-      yLines.push(y1, leftY, null);
-
-      xLines.push(x1, rightX, null);
-      yLines.push(y1, rightY, null);
-    }
-
-    Plotly.restyle("mapa", { x: [xLines], y: [yLines] }, idx);
-
-    windPhase = (windPhase + 0.2) % 1;
-  }
-
-  requestAnimationFrame(animateWind);
-}
-const bgWindAnimated = document.getElementById("bgWindAnimated");
-let windAnimationStarted = false;
-
-function createDiscreteColorscale(values, colors) {
-  const n = colors.length;
-  const scale = [];
-  for (let i = 0; i < n; i++) {
-    const start = i / n;
-    const end = (i + 1) / n;
-    scale.push([start, colors[i]]);
-    scale.push([end, colors[i]]);
-  }
-  return scale;
-}
-async function updateMapa(index) {
-
-  currentFrameIndex = index;
-
-  // garantir frames de vento no cache
-  await getFrame("WDIR10", index);
-  await getFrame("WSPD10", index);
-
-  windBaseField = await buildWindBase(index);
-
-  // carregar variável principal
-  const frame = await getFrame(currentVar, index);
-  const zOriginal = frame.data;
-
-  const globalMax = GLOBAL_META[currentVar].globalMax;
-  const globalMin = GLOBAL_META[currentVar].globalMin;
-  const config = VAR_CONFIG[currentVar];
-
-  let visualMin;
-  let visualMax;
-
-  let z = zOriginal.map(row => [...row]);
-
-  // threshold
-  if (config?.minThreshold !== undefined) {
-
-    const thr = config.minThreshold;
-
-    z = zOriginal.map(row =>
-		  row.map(v =>
-			(!Number.isFinite(v) || Math.abs(v) > 1e6) ? NaN :
-			(v < thr ? 0 : v)
-		  )
-		);
-
-    visualMin = 0;
-    visualMax = globalMax;
-
-  }
-
-  // chuva
-  else if (currentVar === "RAIN_ACC" || currentVar === "RAINRATE") {
-
-    if (globalMax === 0) {
-      visualMin = 0;
-      visualMax = 10;
-    } else {
-      visualMin = 0;
-      visualMax = globalMax;
-    }
-
-  }
-
-  else {
-
-    visualMin = globalMin;
-    visualMax = globalMax;
-
-  }
-
-  // fallback NaN
-  const hasValid = z.some(row =>
-    row.some(v => !Number.isNaN(v))
-  );
-
-  if (!hasValid) {
-    z[0][0] = globalMin;
-  }
-
-  // preservar visibilidade
-  const mapDiv = document.getElementById("mapa");
-  const oldImages = mapDiv.layout?.images || [];
-
-  const previousVisibility = {};
-
-  if (mapDiv.data) {
-    mapDiv.data.forEach(t => {
-      if (t.name) previousVisibility[t.name] = t.visible;
-    });
-  }
-
-  const varNameFull = VAR_NAMES[currentVar] || currentVar.toUpperCase();
-  const elapsedHours = index;
-
-  const hoverTemplate =
-    "<b>lat:</b> %{y:.4f}<br>" +
-    "<b>lon:</b> %{x:.4f}<br>" +
-    `<b>valor:</b> %{z:.4f}` +
-    "<extra></extra>";
-
-  // colorscale
-  let colorscale;
-
-  if (config.colors && config.colorValues) {
-
-    colorscale = createDiscreteColorscale(
-      config.colorValues,
-      config.colors
-    );
-
-  } else if (config.colorscale) {
-
-    colorscale = [...config.colorscale];
-
-  }
-
-  const size = config.size;
-
-  const bgState = getBackgroundState();
-  const visibleSat = bgState.visibleSat;
-
-  const mainTrace = {
-
-    z,
-    x: lon[0],
-    y: lat.map(r => r[0]),
-    hovertemplate:
-		  "<b>%{z:.3f} " + config.unit + "</b><br>" +
-		  "Lat: %{y:.6f}<br>" +
-		  "Lon: %{x:.6f}" +
-		  "<extra></extra>",
-    type: "contour",
-    opacity: visibleSat ? 0.5 : 0.95,
-
-    contours: {
-      coloring: "fill",
-      showlines: false,
-      start: config.colorValues[0],
-      end: config.colorValues[config.colorValues.length - 1],
-      ...(size && { size: size })
-    },
-
-    colorscale: colorscale,
-
-    colorbar: {
-      title: config.unit ? `(${config.unit})` : "",
-      tick0: config.colorValues[0],
-      dtick: size
-    }
-
-  };
-
-  updateBackgroundOptionsForVar();
-
-  const { visibleWindArrows } = getBackgroundState();
-
-  const traces = [mainTrace];
-
-  // vento
-  if (
-    currentVar === "WDIR10" ||
-    currentVar === "WSPD10" ||
-    visibleWindArrows
-  ) {
-
-    traces.push({
-      x: [],
-      y: [],
-      mode: "lines",
-      type: "scattergl",
-      line: {
-        color: "rgba(20,20,20,0.8)",
-        width: 1
-      },
-      hoverinfo: "none",
-      showlegend: false,
-      name: "wind_arrows"
-    });
-
-  }
-
-  traces.push(...markerTraces);
-
-  const layout = {
-
-    uirevision: "mapaZoom",
-
-    title: {
-      text: `${varNameFull} - ${formatWRFTime(time[index])} (${elapsedHours}h)`,
-      x: 0.055,
-      xanchor: "left",
-      y: 0.978,
-      yanchor: "top",
-      font: { size: 18 }
-    },
-
-    annotations: [
-
-      {
-        text: `Previsão inicializada em ${formatWRFTime(time[0])}`,
-        x: 0,
-        y: 1.02,
-        xref: "paper",
-        yref: "paper",
-        showarrow: false,
-        font: { size: 12, color: "#555" },
-        align: "left"
-      }
-
-    ],
-
-    margin: { t: 55, r: 20, l: 50, b: 40 },
-
-    xaxis: {
-      showgrid: false,
-      zeroline: false,
-      showticklabels: true,
-      range: [lonMin, lonMax]
-    },
-
-    yaxis: {
-      showgrid: false,
-      zeroline: false,
-      showticklabels: true,
-      range:
-        lat[0][0] < lat[lat.length - 1][0]
-          ? [latMin, latMax]
-          : [latMax, latMin]
-    },
-
-    images: oldImages
-
-  };
-
-  Plotly.react("mapa", traces, layout).then(() => {
-
-    updateBackground();
-
-    const fig = document.getElementById("mapa");
-
-    fig.data.forEach((t, i) => {
-
-      if (t.name && Object.prototype.hasOwnProperty.call(previousVisibility, t.name)) {
-
-        Plotly.restyle("mapa",
-          { visible: previousVisibility[t.name] },
-          i
-        );
-
-      }
-
-    });
-    
-        // preserva zoom do mapa
-    if (fig.data) {
-		fig.data.forEach((t, i) => {
-		  if (t.name && previousVisibility[t.name] !== undefined) {
-		    Plotly.restyle("mapa", { visible: previousVisibility[t.name] }, i);
-		  }
-		});
-    }
-
-    // evento de clique (metograma)
-
-    if (!fig._metogramaAttached) {
-
-      fig.on("plotly_click", async (event) => {
-
-        const x = event.points[0].x;
-        const y = event.points[0].y;
-
-        const dLon = lon[0][1] - lon[0][0];
-        const dLat = lat[1][0] - lat[0][0];
-
-        let jMin = Math.round((x - lon[0][0]) / dLon);
-        let iMin = Math.round((y - lat[0][0]) / dLat);
-
-        iMin = Math.max(0, Math.min(lat.length - 1, iMin));
-        jMin = Math.max(0, Math.min(lon[0].length - 1, jMin));
-
-        const serie = [];
-
-        for (let t = 0; t < time.length; t++) {
-
-          const frame = await getFrame(currentVar, t);
-
-          serie.push(frame.data[iMin][jMin]);
-
+      function initSistema() {
+        window.data = data;
+        window.JSON_WRF = data;
+        console.log("Vars disponíveis:", Object.keys(data.vars));
+
+        const lon = data.lon;
+        const lat = data.lat;
+        let time = data.time;
+        let currentFrameIndex = 3;
+        let shapefileAdded = false;
+        let windBaseField = null;
+        let shapefileCreated = false;
+        let shapefileIndices = [];
+        const lonMin = Math.min(...lon.flat());
+        const lonMax = Math.max(...lon.flat());
+        const latMin = Math.min(...lat.flat());
+        const latMax = Math.max(...lat.flat());
+        const geojson = data.geojson;
+
+        data.time = time;
+
+        const AIR_VARS = new Set(["so2", "no", "P10", "PM2_5_DRY"]);
+
+        // Poluentes com opção extra de fundo com flechas de vento.
+        const POLLUTANT_VARS = new Set(["so2", "no", "P10", "pm10"]);
+
+        function isPollutantVar(variableName) {
+          return (
+            POLLUTANT_VARS.has(variableName) ||
+            POLLUTANT_VARS.has(String(variableName).toLowerCase())
+          );
         }
 
-        const cfg = VAR_CONFIG[currentVar] || { meto: "line" };
+        const VAR_NAMES = {
+          // Meteorologia
+          T2: "Temperatura a 2 m",
+          rh2: "Umidade Relativa a 2 m",
+          WSPD10: "Velocidade do Vento a 10 m",
+          WDIR10: "Direção do Vento a 10 m",
+          slp: "Pressão ao Nível do Mar (SLP)",
+          THETA_E: "Temperatura Potencial Equivalente",
+          CAPE_2D: "CAPE",
+          CIN: "CIN",
 
-        let trace;
+          // Chuva
+          RAIN_ACC: "Chuva Acumulada",
+          RAINRATE: "Taxa de Precipitação (Intensidade)",
 
-        if (cfg.meto === "bar") {
+          // Qualidade do ar
+          so2: "Dióxido de Enxofre (SO₂)",
+          no: "Óxidos de Nitrogênio (NOₓ)",
+          hcho: "Formaldeído (HCHO)",
+          ald: "Aldeídos Totais",
+          ora2: "Hidrocarbonetos Reativos (ORA2)",
 
-          trace = {
-            x: timeBR,
-            y: serie,
-            type: "bar",
-            name: currentVar.toUpperCase()
-          };
-
-        }
-
-        else if (cfg.meto === "area") {
-
-          trace = {
-            x: timeBR,
-            y: serie,
-            mode: "lines",
-            fill: "tozeroy",
-            line: { width: 2 },
-            name: currentVar.toUpperCase()
-          };
-
-        }
-
-        else {
-
-          trace = {
-            x: timeBR,
-            y: serie,
-            mode: "lines+markers",
-            line: { width: 2 },
-            name: currentVar.toUpperCase()
-          };
-
-        }
-
-        const layout = {
-
-          title: VAR_NAMES[currentVar],
-
-          xaxis: {
-            title: "Tempo",
-            tickangle: 0,
-            dtick: 12
-          },
-
-          yaxis: {
-            title: (cfg.unit ? ` (${cfg.unit})` : "")
-          },
-
-          margin: { t: 40, r: 20, l: 50, b: 40 }
-
+          // Material particulado
+          P10: "Material Particulado PM10",
+          PM2_5_DRY: "Material Particulado PM2.5",
         };
 
-        if (currentVar === "WDIR10") {
+        // Shapefile como linhas
+        function geojsonToTraces(
+          geojsonObj,
+          color = "black",
+          width = 1,
+          opacity = 1,
+        ) {
+          const traces = [];
+          if (!geojsonObj || !geojsonObj.features) return traces;
 
-          layout.yaxis.range = [0, 360];
-          layout.yaxis.dtick = 45;
+          geojsonObj.features.forEach((feature) => {
+            const geom = feature.geometry;
 
+            const addTrace = (coords) => {
+              traces.push({
+                x: coords.map((p) => p[0]),
+                y: coords.map((p) => p[1]),
+                mode: "lines",
+                type: "scatter",
+                line: { color, width },
+                opacity,
+                hoverinfo: "none",
+                showlegend: false,
+                fill: "none",
+                fillcolor: "rgba(0,0,0,0)",
+              });
+            };
+
+            if (geom.type === "Polygon") geom.coordinates.forEach(addTrace);
+            if (geom.type === "MultiPolygon") {
+              geom.coordinates.forEach((poly) => poly.forEach(addTrace));
+            }
+            if (geom.type === "LineString") addTrace(geom.coordinates);
+            if (geom.type === "MultiLineString") {
+              geom.coordinates.forEach((line) => addTrace(line));
+            }
+          });
+
+          return traces;
         }
 
-        Plotly.newPlot("metograma", [trace], layout);
+        // Camadas
+        // Marcadores fixos
+        const markerTraces = [];
+        const markerLegend = document.getElementById("markerLegend");
+        const markerLegendItems = document.getElementById("markerLegendItems");
 
-      });
+        if (data.geojson_layers?.marcadores) {
+          data.geojson_layers.marcadores.features.forEach((f, idx) => {
+            const [markerLon, markerLat] = f.geometry.coordinates;
+            const markerSymbol = idx === 0 ? "square" : "x";
+            const legendSymbol =
+              idx === 0
+                ? '<i class="bi bi-square-fill"></i>'
+                : '<i class="bi bi-x-lg"></i>';
 
-      fig._metogramaAttached = true;
+            markerTraces.push({
+              type: "scatter",
+              mode: "markers+text",
+              x: [markerLon],
+              y: [markerLat],
+              textposition: "top center",
+              marker: {
+                size: 7,
+                color: "black",
+                symbol: markerSymbol,
+              },
+              hovertemplate:
+                `<b>${f.properties.nome}</b><br>` +
+                `lat: ${markerLat}<br>` +
+                `lon: ${markerLon}<extra></extra>`,
+              showlegend: false,
+            });
 
-    }
+            markerLegendItems.insertAdjacentHTML(
+              "beforeend",
+              `<div class="marker-legend-item"><span class="marker-legend-symbol">${legendSymbol}</span>${f.properties.nome}</div>`,
+            );
+          });
 
-    if (!windAnimationStarted) {
+          if (data.geojson_layers.marcadores.features.length > 0) {
+            markerLegend.style.display = "block";
+          }
+        }
+        const rodsTraces = geojsonToTraces(
+          data.geojson_layers?.rodovias,
+          "silver",
+          0.5,
+          1,
+          "rodovias",
+        );
+        const riosTraces = geojsonToTraces(
+          data.geojson_layers?.hidrografia,
+          "blue",
+          0.6,
+          1,
+          "rios",
+        );
+        const areaEdifTraces = geojsonToTraces(
+          data.geojson_layers?.area_edificada,
+          "gray",
+          0.3,
+          1,
+          "area_edificada",
+        );
+        const ferrTraces = geojsonToTraces(
+          data.geojson_layers?.ferrovias,
+          "grey",
+          0.8,
+          1,
+          "ferrovias",
+        );
 
-      windAnimationStarted = true;
-      requestAnimationFrame(animateWind);
+        const shapeTraces = geojsonToTraces(
+          geojson,
+          "black",
+          0.8,
+          1,
+          "shapefile",
+        );
 
-    }
+        // Preenche o select
+        const selectVar = document.getElementById("selectVar");
+        const backgroundControls =
+          document.getElementById("backgroundControls");
+        const btnToggleBgControls = document.getElementById(
+          "btnToggleBgControls",
+        );
+        const iconToggleBgControls = document.getElementById(
+          "iconToggleBgControls",
+        );
+        btnToggleHourControls.addEventListener("click", () => {
+          const isVisible = hourControls.classList.contains("is-collapsed");
+          setHourControlsVisible(isVisible);
+        });
+        const labelToggleBgControls = document.getElementById(
+          "labelToggleBgControls",
+        );
+        const vars = Object.keys(VAR_CONFIG);
+        vars.forEach((v) => {
+          const opt = document.createElement("option");
+          opt.value = v;
+          opt.text = VAR_NAMES[v] || v.toUpperCase();
+          selectVar.appendChild(opt);
+        });
 
-  });
+        window.currentVar = vars[0]; // global
+        window.currentFrameIndex = 0; // global
 
-  document.getElementById("horaAtual").innerHTML =
-    `<b>Hora atual:</b> ${formatWRFTime(time[index])} (BRT)`;
+        // Converte timestamp WRF → Date em UTC
+        function parseWRFTimestamp(ts) {
+          const tsUTC = ts.replace(" ", "T") + "Z";
+          return new Date(tsUTC);
+        }
 
-}
+        // Formata ajustando para fuso local do PC
+        function formatWRFTime(ts) {
+          const dateUTC = parseWRFTimestamp(ts);
+          // Usa o horário local do PC
+          const yyyy = dateUTC.getFullYear();
+          const mm = String(dateUTC.getMonth() + 1).padStart(2, "0");
+          const dd = String(dateUTC.getDate()).padStart(2, "0");
+          const hh = String(dateUTC.getHours()).padStart(2, "0");
+          const min = String(dateUTC.getMinutes()).padStart(2, "0");
 
-          // Função para alterar o fundo do mapa
-          function updateBackground() {
+          return `${dd}/${mm}/${yyyy} ${hh}:${min}`;
+        }
 
-			    updateBackgroundOptionsForVar();
+        // Mapa (contour + shapefile)
+        const GLOBAL_META = {};
 
-			    const fig = document.getElementById("mapa");
-				const { visibleShp, visibleSat } = getBackgroundState();
+        for (const v of Object.keys(data.vars)) {
+          let gmin = Infinity;
+          let gmax = -Infinity;
 
-				const shapefileStillExists =
-				  fig.data && fig.data.some(t =>
-					["shape","rodovias","rios","ferrovias","area_edificada"].includes(t.name)
-				  );
+          const series = data.vars[v].data;
 
-				if (visibleShp && !shapefileStillExists) {
+          for (let t = 0; t < series.length; t++) {
+            const frame = series[t];
 
-				  const shpTraces = [
-					...shapeTraces,
-					...rodsTraces,
-					...riosTraces,
-					...ferrTraces,
-					...areaEdifTraces
-				  ];
+            for (let i = 0; i < frame.length; i++) {
+              const row = frame[i];
 
-				  Plotly.addTraces("mapa", shpTraces);
+              for (let j = 0; j < row.length; j++) {
+                const val = row[j];
 
-				}
-
-			  if (shapefileCreated) {
-
-				shapefileIndices.forEach(i => {
-				  Plotly.restyle("mapa", { visible: visibleShp }, i);
-				});
-
-			  }
-
-			  let images = [];
-
-			  if (visibleSat) {
-
-				const sat = window.data.background_layers.satellite.base64;
-
-				images.push({
-				  source: sat,
-				  xref: "x",
-				  yref: "y",
-				  x: lonMin,
-				  y: latMax,
-				  sizex: lonMax - lonMin,
-				  sizey: latMax - latMin,
-				  sizing: "stretch",
-				  layer: "below",
-				  opacity: 1
-				});
-
-			  }
-
-			  Plotly.update("mapa", {}, { images });
-
-			}
-
-          // Play / Pause
-          let isPlaying = false;
-          let intervalID = null;
-          
-			function updateHourButtons() {
-			  document.querySelectorAll(".control-btn-hour").forEach(btn => {
-				const hour = parseInt(btn.dataset.hour);
-				btn.classList.toggle("active", hour === currentIndex);
-			  });
-			}
-			
-          function togglePlayPause() {
-            if (isPlaying) {
-              pause();
-            } else {
-              play();
+                if (typeof val === "number" && !Number.isNaN(val)) {
+                  if (val < gmin) gmin = val;
+                  if (val > gmax) gmax = val;
+                }
+              }
             }
           }
 
-          function play() {
-            if (intervalID) return;
+          GLOBAL_META[v] = { globalMin: gmin, globalMax: gmax };
+        }
 
-            isPlaying = true;
-            document.getElementById("btnPlayPause").innerHTML =
-              '<i class="bi bi-pause-fill icon"></i>';
+        // Monta uma camada de vetores (flechas) de vento
+        // Convenção WRF: direção indica de ONDE o vento vem
+        // Para a flecha apontar para ONDE o vento vai, soma-se 180°!!!
+        const bgShapefile = document.getElementById("bgShapefile");
+        const bgSatellite = document.getElementById("bgSatellite");
+        const bgWindArrows = document.getElementById("bgWindArrows");
+        const bgWindArrowsWrapper = document.getElementById(
+          "bgWindArrowsWrapper",
+        );
+        let windPhase = 0;
 
-            intervalID = setInterval(() => {
-              currentIndex = (currentIndex + 1) % time.length;
-              updateMapa(currentIndex);
-            }, 500);
+        function updateBackgroundOptionsForVar() {
+          const pollutantMode = isPollutantVar(currentVar);
+
+          bgWindArrowsWrapper.style.display = pollutantMode ? "block" : "none";
+
+          if (!pollutantMode) {
+            bgWindArrows.checked = false;
           }
+        }
 
-          function pause() {
-            if (intervalID) clearInterval(intervalID);
+        function setBackgroundControlsVisible(isVisible) {
+          backgroundControls.classList.toggle("is-collapsed", !isVisible);
+          btnToggleBgControls.setAttribute("aria-expanded", String(isVisible));
+          iconToggleBgControls.className = isVisible
+            ? "bi bi-chevron-up"
+            : "bi bi-chevron-down";
+        }
 
-            intervalID = null;
-            isPlaying = false;
-            document.getElementById("btnPlayPause").innerHTML =
-              '<i class="bi bi-play-fill icon"></i>';
-          }
-          
-			document.querySelectorAll(".control-btn-hour").forEach((btn) => {
-			  btn.onclick = () => {
-				pause();
+        function setHourControlsVisible(isVisible) {
+          hourControls.classList.toggle("is-collapsed", !isVisible);
+          btnToggleHourControls.setAttribute(
+            "aria-expanded",
+            String(isVisible),
+          );
+          iconToggleHourControls.className = isVisible
+            ? "bi bi-chevron-up"
+            : "bi bi-chevron-down";
+        }
 
-				const hourIndex = parseInt(btn.dataset.hour);
+        btnToggleBgControls.addEventListener("click", () => {
+          const isCollapsed =
+            backgroundControls.classList.contains("is-collapsed");
+          setBackgroundControlsVisible(isCollapsed);
+        });
 
-				if (!isNaN(hourIndex) && hourIndex < time.length) {
-				  currentIndex = hourIndex;
-				  updateMapa(currentIndex);
-				  updateHourButtons(); // <- chama aqui
-				}
-			  };
-			});
+        function getBackgroundState() {
+          return {
+            visibleShp: bgShapefile.checked,
+            visibleSat: bgSatellite.checked,
+            visibleWindArrows:
+              bgWindArrowsWrapper.style.display !== "none" &&
+              bgWindArrows.checked,
 
-				document.getElementById("btnPrev").onclick = () => {
-			  pause();
-			  if (currentIndex === 3) currentIndex = time.length - 1;
-			  else if (currentIndex > 3) currentIndex--;
-			  else currentIndex = time.length - 1;
-
-			  updateMapa(currentIndex);
-			  updateHourButtons(); // <- chama aqui
-			};
-
-			document.getElementById("btnNext").onclick = () => {
-			  pause();
-			  if (currentIndex === time.length - 1) currentIndex = 3;
-			  else currentIndex++;
-
-			  updateMapa(currentIndex);
-			  updateHourButtons(); // <- chama aqui
-			};
-          document.getElementById("btnPlayPause").onclick = () => togglePlayPause();
-
-          selectVar.onchange = () => {
-            currentVar = selectVar.value;
-            updateBackgroundOptionsForVar();
-            updateMapa(currentIndex);
+            windAnimated:
+              bgWindArrowsWrapper.style.display !== "none" &&
+              bgWindAnimated.checked,
           };
-          
-          const timeBR = time.map(ts => {
-			  if (!ts || typeof ts !== "string") return "";
+        }
 
-			  const clean = ts.split(".")[0];
-			  const dateUTC = new Date(clean + "Z");
+        async function buildWindBase(index) {
+          const dirFrame = await getFrame("WDIR10", index);
+          const spdFrame = await getFrame("WSPD10", index);
 
-			  const dia  = String(dateUTC.getDate()).padStart(2, "0");
-			  const mes  = String(dateUTC.getMonth() + 1).padStart(2, "0");
-			  const ano  = String(dateUTC.getFullYear()).slice(-2);
-			  const hora = String(dateUTC.getHours()).padStart(2, "0");
-			  const min  = String(dateUTC.getMinutes()).padStart(2, "0");
+          const dir = dirFrame.data;
+          const spd = spdFrame.data;
 
-			  return `${dia}/${mes}/${ano} ${hora}:${min}`;
-			});
+          const rows = dir.length;
+          const cols = dir[0].length;
 
-          // Render inicial
+          const step = Math.max(1, Math.floor(Math.max(rows, cols) / 25));
+
+          const lonSpan = Math.max(...lon[0]) - Math.min(...lon[0]);
+          const latSpan =
+            Math.max(...lat.map((r) => r[0])) -
+            Math.min(...lat.map((r) => r[0]));
+
+          const baseLength = Math.min(lonSpan, latSpan) / 35;
+
+          const arrows = [];
+
+          for (let i = 0; i < rows; i += step) {
+            for (let j = 0; j < cols; j += step) {
+              const dirFrom = dir[i][j];
+              const speed = spd[i][j];
+
+              if (
+                !Number.isFinite(dirFrom) ||
+                !Number.isFinite(speed) ||
+                speed <= 0
+              )
+                continue;
+
+              const dirTo = (dirFrom + 180) % 360;
+              const rad = (dirTo * Math.PI) / 180;
+
+              const ux = Math.sin(rad);
+              const uy = Math.cos(rad);
+
+              const scale = baseLength * (0.5 + Math.min(speed, 20) / 20);
+
+              arrows.push({
+                x: lon[i][j],
+                y: lat[i][j],
+                ux,
+                uy,
+                rad,
+                scale,
+              });
+            }
+          }
+
+          return arrows;
+        }
+
+        function animateWind() {
+          const { windAnimated } = getBackgroundState();
+
+          const fig = document.getElementById("mapa");
+          if (!fig || !fig.data || !windBaseField) {
+            requestAnimationFrame(animateWind);
+            return;
+          }
+
+          const idx = fig.data.findIndex((t) => t.name === "wind_arrows");
+
+          if (idx !== -1) {
+            const xLines = [];
+            const yLines = [];
+
+            for (const a of windBaseField) {
+              const drift =
+                windAnimated && !isPlaying ? a.scale * 0.6 * windPhase : 0;
+
+              const x0 = a.x + a.ux * drift;
+              const y0 = a.y + a.uy * drift;
+
+              const x1 = x0 + a.ux * a.scale;
+              const y1 = y0 + a.uy * a.scale;
+
+              xLines.push(x0, x1, null);
+              yLines.push(y0, y1, null);
+
+              const headLength = a.scale * 0.3;
+              const headAngle = (25 * Math.PI) / 180;
+
+              const leftX = x1 - headLength * Math.sin(a.rad - headAngle);
+              const leftY = y1 - headLength * Math.cos(a.rad - headAngle);
+
+              const rightX = x1 - headLength * Math.sin(a.rad + headAngle);
+              const rightY = y1 - headLength * Math.cos(a.rad + headAngle);
+
+              xLines.push(x1, leftX, null);
+              yLines.push(y1, leftY, null);
+
+              xLines.push(x1, rightX, null);
+              yLines.push(y1, rightY, null);
+            }
+
+            Plotly.restyle("mapa", { x: [xLines], y: [yLines] }, idx);
+
+            windPhase = (windPhase + 0.2) % 1;
+          }
+
+          requestAnimationFrame(animateWind);
+        }
+        const bgWindAnimated = document.getElementById("bgWindAnimated");
+        let windAnimationStarted = false;
+
+        function createDiscreteColorscale(values, colors) {
+          const n = colors.length;
+          const scale = [];
+          for (let i = 0; i < n; i++) {
+            const start = i / n;
+            const end = (i + 1) / n;
+            scale.push([start, colors[i]]);
+            scale.push([end, colors[i]]);
+          }
+          return scale;
+        }
+        async function updateMapa(index) {
+          currentFrameIndex = index;
+
+          // garantir frames de vento no cache
+          await getFrame("WDIR10", index);
+          await getFrame("WSPD10", index);
+
+          windBaseField = await buildWindBase(index);
+
+          // carregar variável principal
+          const frame = await getFrame(currentVar, index);
+          const zOriginal = frame.data;
+
+          const globalMax = GLOBAL_META[currentVar].globalMax;
+          const globalMin = GLOBAL_META[currentVar].globalMin;
+          const config = VAR_CONFIG[currentVar];
+
+          let visualMin;
+          let visualMax;
+
+          let z = zOriginal.map((row) => [...row]);
+
+          // threshold
+          if (config?.minThreshold !== undefined) {
+            const thr = config.minThreshold;
+
+            z = zOriginal.map((row) =>
+              row.map((v) =>
+                !Number.isFinite(v) || Math.abs(v) > 1e6
+                  ? NaN
+                  : v < thr
+                    ? 0
+                    : v,
+              ),
+            );
+
+            visualMin = 0;
+            visualMax = globalMax;
+          }
+
+          // chuva
+          else if (currentVar === "RAIN_ACC" || currentVar === "RAINRATE") {
+            if (globalMax === 0) {
+              visualMin = 0;
+              visualMax = 10;
+            } else {
+              visualMin = 0;
+              visualMax = globalMax;
+            }
+          } else {
+            visualMin = globalMin;
+            visualMax = globalMax;
+          }
+
+          // fallback NaN
+          const hasValid = z.some((row) => row.some((v) => !Number.isNaN(v)));
+
+          if (!hasValid) {
+            z[0][0] = globalMin;
+          }
+
+          // preservar visibilidade
+          const mapDiv = document.getElementById("mapa");
+          const oldImages = mapDiv.layout?.images || [];
+
+          const previousVisibility = {};
+
+          if (mapDiv.data) {
+            mapDiv.data.forEach((t) => {
+              if (t.name) previousVisibility[t.name] = t.visible;
+            });
+          }
+
+          const varNameFull = VAR_NAMES[currentVar] || currentVar.toUpperCase();
+          const elapsedHours = index;
+
+          const hoverTemplate =
+            "<b>lat:</b> %{y:.4f}<br>" +
+            "<b>lon:</b> %{x:.4f}<br>" +
+            `<b>valor:</b> %{z:.4f}` +
+            "<extra></extra>";
+
+          // colorscale
+          let colorscale;
+
+          if (config.colors && config.colorValues) {
+            colorscale = createDiscreteColorscale(
+              config.colorValues,
+              config.colors,
+            );
+          } else if (config.colorscale) {
+            colorscale = [...config.colorscale];
+          }
+
+          const size = config.size;
+
+          const bgState = getBackgroundState();
+          const visibleSat = bgState.visibleSat;
+
+          const mainTrace = {
+            z,
+            x: lon[0],
+            y: lat.map((r) => r[0]),
+            hovertemplate:
+              "<b>%{z:.3f} " +
+              config.unit +
+              "</b><br>" +
+              "Lat: %{y:.6f}<br>" +
+              "Lon: %{x:.6f}" +
+              "<extra></extra>",
+            type: "contour",
+            opacity: visibleSat ? 0.5 : 0.95,
+
+            contours: {
+              coloring: "fill",
+              showlines: false,
+              start: config.colorValues[0],
+              end: config.colorValues[config.colorValues.length - 1],
+              ...(size && { size: size }),
+            },
+
+            colorscale: colorscale,
+
+            colorbar: {
+              title: config.unit ? `(${config.unit})` : "",
+              tick0: config.colorValues[0],
+              dtick: size,
+            },
+          };
+
           updateBackgroundOptionsForVar();
-			currentIndex = 3;
-			updateMapa(currentIndex);
-			updateHourButtons();
-			plotMeteogramaDefault();
-			bgWindArrows.addEventListener("change", () => {
-			  updateMapa(currentIndex);
-			});
 
-			bgWindAnimated.addEventListener("change", () => {
-			  updateMapa(currentIndex);
-			});
-			requestAnimationFrame(animateWind);
+          const { visibleWindArrows } = getBackgroundState();
 
-          backgroundControls.addEventListener("change", () => {
+          const traces = [mainTrace];
+
+          // vento
+          if (
+            currentVar === "WDIR10" ||
+            currentVar === "WSPD10" ||
+            visibleWindArrows
+          ) {
+            traces.push({
+              x: [],
+              y: [],
+              mode: "lines",
+              type: "scattergl",
+              line: {
+                color: "rgba(20,20,20,0.8)",
+                width: 1,
+              },
+              hoverinfo: "none",
+              showlegend: false,
+              name: "wind_arrows",
+            });
+          }
+
+          traces.push(...markerTraces);
+
+          const layout = {
+            uirevision: "mapaZoom",
+
+            title: {
+              text: `${varNameFull} - ${formatWRFTime(time[index])} (${elapsedHours}h)`,
+              x: 0.055,
+              xanchor: "left",
+              y: 0.978,
+              yanchor: "top",
+              font: { size: 18 },
+            },
+
+            annotations: [
+              {
+                text: `Previsão inicializada em ${formatWRFTime(time[0])}`,
+                x: 0,
+                y: 1.02,
+                xref: "paper",
+                yref: "paper",
+                showarrow: false,
+                font: { size: 12, color: "#555" },
+                align: "left",
+              },
+            ],
+
+            margin: { t: 55, r: 20, l: 50, b: 40 },
+
+            xaxis: {
+              showgrid: false,
+              zeroline: false,
+              showticklabels: true,
+              range: [lonMin, lonMax],
+            },
+
+            yaxis: {
+              showgrid: false,
+              zeroline: false,
+              showticklabels: true,
+              range:
+                lat[0][0] < lat[lat.length - 1][0]
+                  ? [latMin, latMax]
+                  : [latMax, latMin],
+            },
+
+            images: oldImages,
+          };
+
+          Plotly.react("mapa", traces, layout).then(() => {
             updateBackground();
-            updateMapa(currentIndex);
+
+            const fig = document.getElementById("mapa");
+
+            fig.data.forEach((t, i) => {
+              if (
+                t.name &&
+                Object.prototype.hasOwnProperty.call(previousVisibility, t.name)
+              ) {
+                Plotly.restyle(
+                  "mapa",
+                  { visible: previousVisibility[t.name] },
+                  i,
+                );
+              }
+            });
+
+            // preserva zoom do mapa
+            if (fig.data) {
+              fig.data.forEach((t, i) => {
+                if (t.name && previousVisibility[t.name] !== undefined) {
+                  Plotly.restyle(
+                    "mapa",
+                    { visible: previousVisibility[t.name] },
+                    i,
+                  );
+                }
+              });
+            }
+
+            // evento de clique (metograma)
+
+            if (!fig._metogramaAttached) {
+              fig.on("plotly_click", async (event) => {
+                const x = event.points[0].x;
+                const y = event.points[0].y;
+
+                const dLon = lon[0][1] - lon[0][0];
+                const dLat = lat[1][0] - lat[0][0];
+
+                let jMin = Math.round((x - lon[0][0]) / dLon);
+                let iMin = Math.round((y - lat[0][0]) / dLat);
+
+                iMin = Math.max(0, Math.min(lat.length - 1, iMin));
+                jMin = Math.max(0, Math.min(lon[0].length - 1, jMin));
+
+                const serie = [];
+
+                for (let t = 0; t < time.length; t++) {
+                  const frame = await getFrame(currentVar, t);
+
+                  serie.push(frame.data[iMin][jMin]);
+                }
+
+                const cfg = VAR_CONFIG[currentVar] || { meto: "line" };
+
+                let trace;
+
+                if (cfg.meto === "bar") {
+                  trace = {
+                    x: timeBR,
+                    y: serie,
+                    type: "bar",
+                    name: currentVar.toUpperCase(),
+                  };
+                } else if (cfg.meto === "area") {
+                  trace = {
+                    x: timeBR,
+                    y: serie,
+                    mode: "lines",
+                    fill: "tozeroy",
+                    line: { width: 2 },
+                    name: currentVar.toUpperCase(),
+                  };
+                } else {
+                  trace = {
+                    x: timeBR,
+                    y: serie,
+                    mode: "lines+markers",
+                    line: { width: 2 },
+                    name: currentVar.toUpperCase(),
+                  };
+                }
+
+                const layout = {
+                  title: VAR_NAMES[currentVar],
+
+                  xaxis: {
+                    title: "Tempo",
+                    tickangle: 0,
+                    dtick: 12,
+                  },
+
+                  yaxis: {
+                    title: cfg.unit ? ` (${cfg.unit})` : "",
+                  },
+
+                  margin: { t: 40, r: 20, l: 50, b: 40 },
+                };
+
+                if (currentVar === "WDIR10") {
+                  layout.yaxis.range = [0, 360];
+                  layout.yaxis.dtick = 45;
+                }
+
+                Plotly.newPlot("metograma", [trace], layout);
+              });
+
+              fig._metogramaAttached = true;
+            }
+
+            if (!windAnimationStarted) {
+              windAnimationStarted = true;
+              requestAnimationFrame(animateWind);
+            }
           });
 
-          // Após mudar variável, volta ao ponto default e atualiza metograma
-          selectVar.addEventListener("change", (e) => {
-            currentVar = e.target.value;
-            currentIndex = 3;
+          document.getElementById("horaAtual").innerHTML =
+            `<b>Hora atual:</b> ${formatWRFTime(time[index])} (BRT)`;
+        }
 
-            updateBackgroundOptionsForVar();
-            updateMapa(currentIndex);
-            updateBackground();
-            plotMeteogramaDefault();
+        // Função para alterar o fundo do mapa
+        function updateBackground() {
+          updateBackgroundOptionsForVar();
+
+          const fig = document.getElementById("mapa");
+          const { visibleShp, visibleSat } = getBackgroundState();
+
+          const shapefileStillExists =
+            fig.data &&
+            fig.data.some((t) =>
+              [
+                "shape",
+                "rodovias",
+                "rios",
+                "ferrovias",
+                "area_edificada",
+              ].includes(t.name),
+            );
+
+          if (visibleShp && !shapefileStillExists) {
+            const shpTraces = [
+              ...shapeTraces,
+              ...rodsTraces,
+              ...riosTraces,
+              ...ferrTraces,
+              ...areaEdifTraces,
+            ];
+
+            Plotly.addTraces("mapa", shpTraces);
+          }
+
+          if (shapefileCreated) {
+            shapefileIndices.forEach((i) => {
+              Plotly.restyle("mapa", { visible: visibleShp }, i);
+            });
+          }
+
+          let images = [];
+
+          if (visibleSat) {
+            const sat = window.data.background_layers.satellite.base64;
+
+            images.push({
+              source: sat,
+              xref: "x",
+              yref: "y",
+              x: lonMin,
+              y: latMax,
+              sizex: lonMax - lonMin,
+              sizey: latMax - latMin,
+              sizing: "stretch",
+              layer: "below",
+              opacity: 1,
+            });
+          }
+
+          Plotly.update("mapa", {}, { images });
+        }
+
+        // Play / Pause
+        let isPlaying = false;
+        let intervalID = null;
+
+        function updateHourButtons() {
+          document.querySelectorAll(".control-btn-hour").forEach((btn) => {
+            const hour = parseInt(btn.dataset.hour);
+            btn.classList.toggle("active", hour === currentIndex);
           });
+        }
 
-          // Metograma (clique no mapa)
-          const mapa = document.getElementById("mapa");
-          
+        function togglePlayPause() {
+          if (isPlaying) {
+            pause();
+          } else {
+            play();
+          }
+        }
 
+        function play() {
+          if (intervalID) return;
 
-          // Metograma default após carregar a página
-         // Metograma default após carregar a página
-async function plotMeteogramaDefault() {
-  if (!data || !data.vars[currentVar] || !data.vars[currentVar].data) {
-    console.warn("Dados da variável não carregados:", currentVar);
-    return;
-  }
+          isPlaying = true;
+          document.getElementById("btnPlayPause").innerHTML =
+            '<i class="bi bi-pause-fill icon"></i>';
 
-  // Usa o ponto fixo calculado no loadForecast
-  const i = window.GRID_POINT?.i ?? Math.floor(data.lat.length / 2);
-  const j = window.GRID_POINT?.j ?? Math.floor(data.lon[0].length / 2);
+          intervalID = setInterval(() => {
+            currentIndex = (currentIndex + 1) % time.length;
+            updateMapa(currentIndex);
+          }, 500);
+        }
 
-  const serie = [];
+        function pause() {
+          if (intervalID) clearInterval(intervalID);
 
-  for (let t = 0; t < data.vars[currentVar].data.length; t++) {
-    const frameData = data.vars[currentVar].data[t];
-    if (frameData && frameData[i] && frameData[i][j] != null) {
-      serie.push(frameData[i][j]);
-    } else {
-      serie.push(NaN); // substitui frames ausentes por NaN
-    }
-  }
+          intervalID = null;
+          isPlaying = false;
+          document.getElementById("btnPlayPause").innerHTML =
+            '<i class="bi bi-play-fill icon"></i>';
+        }
 
-  const cfg = VAR_CONFIG[currentVar] || { meto: "line" };
+        document.querySelectorAll(".control-btn-hour").forEach((btn) => {
+          btn.onclick = () => {
+            pause();
 
-  let trace;
-  if (cfg.meto === "bar") {
-    trace = { x: timeBR, y: serie, type: "bar", name: currentVar.toUpperCase() };
-  } else if (cfg.meto === "area") {
-    trace = { x: timeBR, y: serie, mode: "lines", fill: "tozeroy", line: { width: 2 }, name: currentVar.toUpperCase() };
-  } else {
-    trace = { x: timeBR, y: serie, mode: "lines+markers", line: { width: 2 }, name: currentVar.toUpperCase() };
-  }
+            const hourIndex = parseInt(btn.dataset.hour);
 
-  const layout = {
-    title: VAR_NAMES[currentVar],
-    xaxis: { title: "Tempo", tickangle: 0, dtick: 12 },
-    yaxis: { title: cfg.unit ? ` (${cfg.unit})` : "" },
-    margin: { t: 40, r: 20, l: 50, b: 40 }
-  };
+            if (!isNaN(hourIndex) && hourIndex < time.length) {
+              currentIndex = hourIndex;
+              updateMapa(currentIndex);
+              updateHourButtons(); // <- chama aqui
+            }
+          };
+        });
 
-  Plotly.newPlot("metograma", [trace], layout);
-}
-}
+        document.getElementById("btnPrev").onclick = () => {
+          pause();
+          if (currentIndex === 3) currentIndex = time.length - 1;
+          else if (currentIndex > 3) currentIndex--;
+          else currentIndex = time.length - 1;
+
+          updateMapa(currentIndex);
+          updateHourButtons(); // <- chama aqui
+        };
+
+        document.getElementById("btnNext").onclick = () => {
+          pause();
+          if (currentIndex === time.length - 1) currentIndex = 3;
+          else currentIndex++;
+
+          updateMapa(currentIndex);
+          updateHourButtons(); // <- chama aqui
+        };
+        document.getElementById("btnPlayPause").onclick = () =>
+          togglePlayPause();
+
+        selectVar.onchange = () => {
+          currentVar = selectVar.value;
+          updateBackgroundOptionsForVar();
+          updateMapa(currentIndex);
+        };
+
+        const timeBR = time.map((ts) => {
+          if (!ts || typeof ts !== "string") return "";
+
+          const clean = ts.split(".")[0];
+          const dateUTC = new Date(clean + "Z");
+
+          const dia = String(dateUTC.getDate()).padStart(2, "0");
+          const mes = String(dateUTC.getMonth() + 1).padStart(2, "0");
+          const ano = String(dateUTC.getFullYear()).slice(-2);
+          const hora = String(dateUTC.getHours()).padStart(2, "0");
+          const min = String(dateUTC.getMinutes()).padStart(2, "0");
+
+          return `${dia}/${mes}/${ano} ${hora}:${min}`;
+        });
+
+        // Render inicial
+        updateBackgroundOptionsForVar();
+        currentIndex = 3;
+        updateMapa(currentIndex);
+        updateHourButtons();
+        plotMeteogramaDefault();
+        bgWindArrows.addEventListener("change", () => {
+          updateMapa(currentIndex);
+        });
+
+        bgWindAnimated.addEventListener("change", () => {
+          updateMapa(currentIndex);
+        });
+        requestAnimationFrame(animateWind);
+
+        backgroundControls.addEventListener("change", () => {
+          updateBackground();
+          updateMapa(currentIndex);
+        });
+
+        // Após mudar variável, volta ao ponto default e atualiza metograma
+        selectVar.addEventListener("change", (e) => {
+          currentVar = e.target.value;
+          currentIndex = 3;
+
+          updateBackgroundOptionsForVar();
+          updateMapa(currentIndex);
+          updateBackground();
+          plotMeteogramaDefault();
+        });
+
+        // Metograma (clique no mapa)
+        const mapa = document.getElementById("mapa");
+
+        // Metograma default após carregar a página
+        // Metograma default após carregar a página
+        async function plotMeteogramaDefault() {
+          if (!data || !data.vars[currentVar] || !data.vars[currentVar].data) {
+            console.warn("Dados da variável não carregados:", currentVar);
+            return;
+          }
+
+          // Usa o ponto fixo calculado no loadForecast
+          const i = window.GRID_POINT?.i ?? Math.floor(data.lat.length / 2);
+          const j = window.GRID_POINT?.j ?? Math.floor(data.lon[0].length / 2);
+
+          const serie = [];
+
+          for (let t = 0; t < data.vars[currentVar].data.length; t++) {
+            const frameData = data.vars[currentVar].data[t];
+            if (frameData && frameData[i] && frameData[i][j] != null) {
+              serie.push(frameData[i][j]);
+            } else {
+              serie.push(NaN); // substitui frames ausentes por NaN
+            }
+          }
+
+          const cfg = VAR_CONFIG[currentVar] || { meto: "line" };
+
+          let trace;
+          if (cfg.meto === "bar") {
+            trace = {
+              x: timeBR,
+              y: serie,
+              type: "bar",
+              name: currentVar.toUpperCase(),
+            };
+          } else if (cfg.meto === "area") {
+            trace = {
+              x: timeBR,
+              y: serie,
+              mode: "lines",
+              fill: "tozeroy",
+              line: { width: 2 },
+              name: currentVar.toUpperCase(),
+            };
+          } else {
+            trace = {
+              x: timeBR,
+              y: serie,
+              mode: "lines+markers",
+              line: { width: 2 },
+              name: currentVar.toUpperCase(),
+            };
+          }
+
+          const layout = {
+            title: VAR_NAMES[currentVar],
+            xaxis: { title: "Tempo", tickangle: 0, dtick: 12 },
+            yaxis: { title: cfg.unit ? ` (${cfg.unit})` : "" },
+            margin: { t: 40, r: 20, l: 50, b: 40 },
+          };
+
+          Plotly.newPlot("metograma", [trace], layout);
+        }
+      }
     </script>
   </body>
 </html>
